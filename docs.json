@@ -7,6 +7,9 @@
     "light": "#a78bfa",
     "dark": "#5b54e6"
   },
+  "appearance": {
+    "default": "dark"
+  },
   "favicon": "/favicon.png",
   "navigation": {
     "languages": [
@@ -16,29 +19,29 @@
         "groups": [
           {
             "group": "Start",
-            "pages": ["de/einfuehrung", "de/erste-schritte"]
+            "pages": ["einfuehrung", "erste-schritte"]
           },
           {
             "group": "Builder",
             "pages": [
-              "de/script-builder",
-              "de/hud-builder",
-              "de/notification-builder",
-              "de/easy-nui",
-              "de/loading-screen"
+              "script-builder",
+              "hud-builder",
+              "notification-builder",
+              "easy-nui",
+              "loading-screen"
             ]
           },
           {
             "group": "Grundlagen",
-            "pages": ["de/frameworks", "de/export-installation"]
+            "pages": ["frameworks", "export-installation"]
           },
           {
             "group": "Funktionen",
             "pages": [
-              "de/store-bausteine",
-              "de/meine-scripts-aktivitaet",
-              "de/mitgliedschaft-beta",
-              "de/faq"
+              "store-bausteine",
+              "meine-scripts-aktivitaet",
+              "mitgliedschaft-beta",
+              "faq"
             ]
           }
         ]
