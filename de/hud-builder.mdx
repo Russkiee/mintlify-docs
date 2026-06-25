@@ -1,0 +1,180 @@
+﻿---
+title: "HUD Builder"
+description: "Baue ein realistisches Ingame-HUD mit Statuswerten, Geld, Job, Tacho und Logo: die Vorschau entspricht exakt dem Export."
+---
+
+Der HUD Builder ist ein visueller Editor, mit dem du ein komplettes Ingame-HUD für deinen
+FiveM-Server zusammenstellst. Du wählst Stil und Elemente, platzierst alles per Drag-and-drop
+und lädst am Ende eine fertige Resource herunter. Was du im Vorschaufenster siehst, ist genau
+das, was später im Spiel angezeigt wird (WYSIWYG).
+
+## Framework wählen
+
+Oben im Builder legst du den **Projektnamen** und das **Framework** fest. Das Framework
+bestimmt, an welche Datenquelle dein HUD gebunden wird:
+
+- **ESX**
+- **QBCore / QB**
+- **Qbox**
+- **Standalone** (kein Framework)
+
+<Note>
+Der Projektname wird auch als Dateiname der exportierten Resource verwendet.
+</Note>
+
+## Aufbau des Editors
+
+Der Builder ist in drei Spalten aufgeteilt:
+
+- **Links: Elemente:** Liste aller HUD-Elemente. Jedes lässt sich per Schalter ein- oder
+  ausblenden und durch Anklicken zum Bearbeiten auswählen.
+- **Mitte: Vorschau:** Eine maßstabsgetreue 1920×1080-Bühne mit Demo-Werten. Hier ziehst du
+  Elemente direkt an ihre Position.
+- **Rechts: Einstellungen:** Globale Optionen (Allgemein) sowie die Detail-Einstellungen für
+  das aktuell ausgewählte Element.
+
+## Elemente
+
+Diese Elemente stehen zur Verfügung und können einzeln aktiviert werden:
+
+- **Logo**: Text oder Bild deines Servers
+- **Bargeld**: Cash-Wert
+- **Bank**: Kontostand
+- **Spieler-ID**: ID des Spielers
+- **Job**: aktuelle Tätigkeit
+- **Statuswerte**: Leben, Weste, Hunger, Durst, Ausdauer, Voice
+- **Tacho**: Geschwindigkeitsanzeige im Fahrzeug
+- **Uhrzeit**: aktuelle Zeit
+- **Standort**: aktuelle Position
+
+<Note>
+**Uhrzeit** und **Standort** sind standardmäßig ausgeblendet. Aktiviere sie über den Schalter
+in der Elementliste, wenn du sie nutzen möchtest.
+</Note>
+
+## Schritt für Schritt zum eigenen HUD
+
+<Steps>
+<Step title="Vorlage als Startpunkt wählen">
+Im rechten Bereich unter **Allgemein → Vorlagen** stehen fertige Looks bereit:
+**Glass Modern**, **Cyberpunk Neon**, **Minimal Clean**, **Tactical**, **Neon Holo** und
+**Royal Gold**. Ein Klick setzt Preset, Schrift, Akzentfarbe, Stile und Layout passend zusammen -
+ein perfekter Ausgangspunkt, den du danach frei anpasst.
+</Step>
+
+<Step title="Stil festlegen">
+Unter **Stil-Preset** wählst du das Grunddesign (z. B. Glass, Cyberpunk, Classic RPG, Tactical).
+Lege außerdem **Schriftart**, **Akzentfarbe**, **Rundung** und **Akzent-Glow** fest. Die
+Akzentfarbe färbt unter anderem Icons, Tacho-Bogen und Logo-Text.
+</Step>
+
+<Step title="Elemente ein- und ausschalten">
+Aktiviere in der linken Liste genau die Elemente, die dein HUD zeigen soll, und blende den Rest aus.
+</Step>
+
+<Step title="Positionieren">
+Klicke ein Element in der Vorschau an und ziehe es an die gewünschte Stelle. Das aktive Element
+ist mit einer gestrichelten Umrandung in deiner Akzentfarbe markiert. Feinjustieren kannst du
+rechts über **Verankerung**, **Abstand X**, **Abstand Y** und **Größe**.
+</Step>
+
+<Step title="Details pro Element einstellen">
+Je nach ausgewähltem Element erscheinen zusätzliche Optionen: z. B. Logo-Text/-Bild, Tacho-Stil
+oder Status-Stil und Statusfarben (siehe unten).
+</Step>
+
+<Step title="Build & Download">
+Klicke oben rechts auf **Build &amp; Download**. Du erhältst eine ZIP-Datei mit der fertigen
+HUD-Resource.
+</Step>
+</Steps>
+
+## Layout: gruppiert vs. getrennt
+
+Über **Werte-Layout** steuerst du, wie die Info-Elemente **Bargeld, Bank, Spieler-ID, Job,
+Uhrzeit** und **Standort** angeordnet werden:
+
+- **Eine Box**: Alle aktiven Werte stehen in einer gemeinsamen Info-Box. Du verschiebst und
+  skalierst diese Box als Ganzes; Position und Größe der einzelnen Werte werden dann zusammen
+  gesteuert.
+- **Einzeln**: Jeder Wert ist ein eigenes Widget, das du frei platzieren und einzeln
+  skalieren kannst.
+
+<Note>
+**Logo**, **Statuswerte** und **Tacho** werden immer unabhängig positioniert: das Werte-Layout
+betrifft nur die sechs Info-Werte oben.
+</Note>
+
+## Statuswerte gestalten
+
+Wähle das Element **Statuswerte**, um folgende Anzeigen zu konfigurieren: **Leben, Weste, Hunger,
+Durst, Ausdauer** und **Voice**. Du kannst jeden einzelnen Wert separat ein- oder ausblenden und
+ihm eine eigene **Farbe** geben.
+
+Über **Status-Stil** legst du die Darstellung aller Statuswerte fest:
+
+- **Ringe**: kreisförmige Fortschrittsringe mit Icon in der Mitte
+- **Balken**: horizontale Balken
+- **Segmente**: horizontale Balken mit Segment-Unterteilung
+- **Kapseln**: schmale, vertikale Säulen
+
+<Note>
+Das **Voice**-Symbol pulsiert beim Sprechen, sodass aktives Reden sofort sichtbar ist.
+</Note>
+
+## Tacho (Speedometer)
+
+Wähle das Element **Tacho** und lege den **Tacho-Stil** fest:
+
+- **Rundinstrument**: klassische runde Anzeige mit Drehzahl-Bogen
+- **Digital**: große Zahl ohne Zifferblatt
+- **Balken**: Zahl mit horizontaler Drehzahl-Leiste
+
+Die **Tacho-Einheit** (km/h oder mph) stellst du global unter **Allgemein** ein.
+
+<Note>
+Der Tacho erscheint im Spiel nur, wenn der Spieler in einem Fahrzeug sitzt. In der Vorschau wird
+er mit Demo-Werten dauerhaft angezeigt, damit du ihn gestalten kannst.
+</Note>
+
+## Logo
+
+Beim Element **Logo** hast du zwei Möglichkeiten:
+
+- **Logo-Text**: ein Schriftzug, der in deiner Akzentfarbe dargestellt wird
+- **Logo-Bild URL** (optional): Link zu einem Bild, das anstelle des Textes angezeigt wird
+
+## Farben, Rundung und Glow
+
+Unter **Allgemein** beeinflussen drei Einstellungen den Gesamteindruck:
+
+- **Akzentfarbe**: durchgängige Hauptfarbe (Icons, Tacho, Logo, Auswahlrahmen)
+- **Rundung**: Eckenradius der Boxen (0-40 px)
+- **Akzent-Glow**: farbiges Leuchten um die Boxen (0-60 px), in deiner Akzentfarbe
+
+Die Akzentfarbe gibst du per Farbwähler oder als Hex-Wert ein. Statusfarben werden separat pro
+Statuswert gesetzt.
+
+## Feinpositionierung
+
+Für das ausgewählte Element bzw. die Info-Box stehen rechts diese Regler bereit:
+
+- **Verankerung**: Ecke, an der das Element ausgerichtet wird (oben/unten, links/rechts)
+- **Abstand X**: horizontaler Abstand zur Ecke (0-1920 px)
+- **Abstand Y**: vertikaler Abstand zur Ecke (0-1080 px)
+- **Größe**: Skalierung von 50 % bis 250 %
+
+Die Verankerung bestimmt, von welcher Bildschirmecke aus Abstand X und Y gemessen werden: so
+bleibt dein HUD auf unterschiedlichen Auflösungen sauber positioniert.
+
+## Vorschau = Export
+
+Die Vorschau rendert dein HUD mit denselben Stilen, die auch in die exportierte Resource
+geschrieben werden. Demo-Werte (z. B. Bargeld, Kontostand, Geschwindigkeit) dienen nur der
+Darstellung; im Spiel werden sie durch die echten Werte deines Frameworks ersetzt. Dadurch
+entspricht das, was du im Editor siehst, exakt dem Endergebnis im Spiel.
+
+<Card title="Ergebnis exportieren" icon="download">
+Mit **Build &amp; Download** erzeugst du eine ZIP-Datei mit der einsatzbereiten HUD-Resource für
+dein gewähltes Framework.
+</Card>

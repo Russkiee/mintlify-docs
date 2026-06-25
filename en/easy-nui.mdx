@@ -1,0 +1,170 @@
+﻿---
+title: "Easy NUI Builder"
+description: "Build in-game UIs, overlays and menus with drag-and-drop and export them as a ready-to-use FiveM NUI resource."
+---
+
+The Easy NUI Builder lets you create visual in-game interfaces for your FiveM server without writing any HTML, CSS or JavaScript. You place panels, text, buttons, input fields and images onto a preview stage with drag-and-drop, and export the result as a complete, runnable NUI resource.
+
+<Note>
+  Build & Download of the Easy NUI resource is available from the Pro plan. You can try the editor at any time; exporting requires Pro.
+</Note>
+
+## Editor layout
+
+The builder is split into three areas:
+
+<CardGroup cols={3}>
+  <Card title="Elements" icon="layout-panel-top">
+    The palette on the left. Pick the element type you want to add to the canvas.
+  </Card>
+  <Card title="Canvas" icon="monitor">
+    The preview in the center with a gameplay background. Position your elements here with the mouse.
+  </Card>
+  <Card title="Properties" icon="sliders-horizontal">
+    The panel on the right. Configure general options and the details of the selected element.
+  </Card>
+</CardGroup>
+
+Above the three areas sits the header bar with the project settings and the **Build &amp; Download** button.
+
+## Set up your project
+
+Start by defining the basic settings of your NUI project in the header bar.
+
+<Steps>
+  <Step title="Name the project">
+    Enter a name under **Project name**. It is also used as the file name of the exported ZIP archive (e.g. `My Easy NUI.zip`).
+  </Step>
+  <Step title="Set the command">
+    Under **Command** you define the chat command that opens the interface in-game. Only lowercase letters, digits and underscores are allowed; other characters are removed automatically. With the default value `menu` you open the NUI in-game via `/menu`.
+  </Step>
+  <Step title="Choose a framework">
+    Pick your framework: **ESX**, **QBCore / QB**, **Qbox** or **Standalone**. The choice adds the matching dependency to `fxmanifest.lua` (`es_extended`, `qb-core` or `qbx_core`). For **Standalone**, no dependency is set.
+  </Step>
+  <Step title="Set the accent color">
+    In the properties panel on the right, under **General**, you'll find the **Accent color**. It colors the label of info cards, the default color of new buttons and the focus border of input fields. Use the color picker or enter a hex value (e.g. `#7C5CFF`).
+  </Step>
+</Steps>
+
+## Add elements
+
+Click an element type in the palette on the left to add it to the canvas. The new element is selected immediately so you can edit it right away in the properties panel.
+
+<CardGroup cols={2}>
+  <Card title="Panel" icon="layout-panel-top">
+    A glass box with a **title** and **text**: great as a container or info block.
+  </Card>
+  <Card title="Info card" icon="info">
+    A compact status display with a **title** (in the accent color, uppercase) and a highlighted **value**.
+  </Card>
+  <Card title="Text" icon="type">
+    A single free **text line** without a background.
+  </Card>
+  <Card title="Button" icon="mouse-pointer-click">
+    A clickable button with a **label**, an **action** and its own **color**.
+  </Card>
+  <Card title="Input" icon="text-cursor-input">
+    A text field with a **placeholder** and a **variable** whose input is passed to your Lua.
+  </Card>
+  <Card title="Image" icon="image">
+    An image area that displays a picture from an **http(s) URL**.
+  </Card>
+</CardGroup>
+
+<Note>
+  You can place up to 40 elements per project.
+</Note>
+
+## Position and adjust elements
+
+Each element lives freely on the canvas and is positioned as a percentage of the area: so your layout fits any resolution.
+
+- **Move:** Drag an element to the desired spot with the mouse held down. The currently selected element is marked with a colored outline.
+- **Select:** Click an element to edit it in the right-hand panel.
+- **Fine-tune size and position:** Use the **X**, **Y**, **Width** and **Height** sliders in the properties panel. The current percentage value is shown above each slider.
+- **Delete:** Click the trash icon at the top right of the element section.
+
+<Tip>
+  The gameplay background in the canvas is only a preview. The exported interface has a transparent background and sits as an overlay on top of the game.
+</Tip>
+
+## Buttons and interactions
+
+Buttons are the interactive part of your interface. In the properties panel you decide what happens on click.
+
+- **Label:** The text shown on the button.
+- **Button color:** A per-button color, independent of the global accent color.
+- **Action:** Either **Close NUI** (closes the interface and releases control) or **Lua callback**.
+
+For the **Lua callback** action you also enter a **callback name**. On click, the button triggers a Lua event on your server so you can attach your own logic. The event is named `lp_nui:` followed by your callback name and receives the values of all input fields as a table:
+
+```lua
+AddEventHandler('lp_nui:myCallback', function(values)
+    -- values contains the input fields, e.g. values.input
+    print(values.input)
+end)
+```
+
+<Note>
+  Callback names and variables may only contain letters, digits and underscores. Invalid characters are removed automatically as you type.
+</Note>
+
+## Input fields and variables
+
+Use the **Input** element to collect text from the player.
+
+- **Placeholder:** The hint text shown while the field is empty.
+- **Variable:** The name under which the entered value is passed.
+
+When a button with a Lua callback is clicked, the values of all input fields are collected and passed to your Lua event under their variable names (see the example above).
+
+## Images
+
+The **Image** element displays a graphic from an **image URL**. Only `http(s)` URLs are allowed; the image is scaled to fill the element area. Provide an externally hosted image URL here.
+
+## Export as a NUI resource
+
+Once your layout is ready, export it as a complete FiveM resource.
+
+<Steps>
+  <Step title="Click Build & Download">
+    Click **Build &amp; Download** at the top right. Your configuration is compiled into a resource server-side and downloaded as a ZIP archive.
+  </Step>
+  <Step title="Unzip the archive">
+    Extract the downloaded file. You get a complete resource folder.
+  </Step>
+</Steps>
+
+The exported resource contains the following files:
+
+| File | Contents |
+| --- | --- |
+| `fxmanifest.lua` | Manifest with framework dependency and included files |
+| `client/client.lua` | Registers the command, opens/closes the NUI and forwards callbacks |
+| `html/index.html` | The rendered layout of your elements |
+| `html/style.css` | The styling including your accent color |
+| `html/script.js` | The logic for buttons, inputs and closing |
+
+## Add it to your server
+
+<Steps>
+  <Step title="Place the resource">
+    Copy the extracted folder into your `resources` directory. Rename it to match your project if needed.
+  </Step>
+  <Step title="Start it in server.cfg">
+    Add `ensure <resource-name>` to your `server.cfg` and restart the server (or use `refresh` + `ensure` in the live console).
+  </Step>
+  <Step title="Open it in-game">
+    Type the command you defined in-game, e.g. `/menu`. The interface appears and the mouse focus is enabled.
+  </Step>
+  <Step title="Close it">
+    The interface can be hidden again with the **ESC** key or via a button with the **Close NUI** action.
+  </Step>
+  <Step title="Wire up callbacks">
+    Attach your own logic to the `lp_nui:<callback>` events to react to button clicks and inputs.
+  </Step>
+</Steps>
+
+## Inputs are validated automatically
+
+On export, all content is validated and secured: text is HTML-escaped, colors must be valid hex values, image URLs must start with `http(s)`, and commands, variables and callback names are limited to allowed characters. This reliably turns your layout into clean, valid code.

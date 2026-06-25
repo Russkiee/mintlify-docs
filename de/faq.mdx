@@ -1,0 +1,152 @@
+﻿---
+title: "Häufige Fragen"
+description: "Antworten auf die wichtigsten Fragen zu LP-DevTool: Programmierkenntnisse, Frameworks, Installation, Kosten in der Beta und wo du Hilfe bekommst."
+---
+
+Hier findest du kurze, konkrete Antworten auf die Fragen, die beim Einstieg in
+LP-DevTool am häufigsten aufkommen. Brauchst du danach noch Hilfe, schau in die
+verlinkten Detailseiten oder frag direkt in unserem [Discord](https://discord.com/invite/W7uzcDCKnJ).
+
+## Erste Orientierung
+
+<CardGroup cols={2}>
+  <Card title="Was ist LP-DevTool?" icon="circle-info" href="/de/einfuehrung">
+    Der Überblick über alle Builder und Funktionen.
+  </Card>
+  <Card title="Erste Schritte" icon="rocket" href="/de/erste-schritte">
+    Vom ersten Login bis zum ersten Builder.
+  </Card>
+</CardGroup>
+
+## Die wichtigsten Fragen
+
+<AccordionGroup>
+  <Accordion title="Brauche ich Programmierkenntnisse?" icon="code">
+    Nein. LP-DevTool ist ein **visueller Baukasten**: Du ziehst fertige Bausteine
+    wie Marker, Fahrzeugspawns, Events oder Datenbankabfragen in deinen Workspace
+    und konfigurierst sie direkt im Block. Den sauberen Lua-, HTML- und CSS-Code
+    erzeugt das Tool im Hintergrund für dich.
+
+    Du musst also weder Lua noch HTML oder CSS von Hand schreiben. Vorwissen
+    schadet nie, ist aber keine Voraussetzung, um eine fertige, startbare Resource
+    zu bauen.
+
+    <Note>
+      Falls du bereits Lua-Code hast, kannst du ihn über den integrierten
+      Lua-Parser importieren. Er wandelt bestehende Scripts in visuelle Bausteine
+      um, die du im Builder weiterbearbeitest.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Welche Frameworks werden unterstützt?" icon="layers">
+    Du wählst dein Framework beim Bauen aus, und der generierte Code passt sich
+    automatisch an:
+
+    - **Standalone**: komplett frameworkfreie Scripts
+    - **ESX** (Legacy)
+    - **QBCore**
+    - **Qbox**
+
+    Moderne Erweiterungen aus dem ox-Ökosystem wie `oxmysql`, `ox_lib` und
+    `ox_inventory` werden standardmäßig unterstützt. Bei ESX, QBCore und Qbox
+    bindet LP-DevTool den passenden Core automatisch ein, bei Standalone läuft
+    alles ohne Framework.
+  </Accordion>
+
+  <Accordion title="Wie installiere ich eine fertige Resource?" icon="server">
+    Nach dem **Build** lädst du deine Resource als ZIP herunter und installierst
+    sie wie jede andere FiveM-Resource:
+
+    <Steps>
+      <Step title="ZIP entpacken">
+        Entpacke die heruntergeladene Datei. Du erhältst einen Ordner mit
+        `fxmanifest.lua` und je nach Build `client/`, `server/` und `html/`.
+      </Step>
+      <Step title="In den resources-Ordner kopieren">
+        Verschiebe den Ordner in den `resources`-Ordner deines FiveM-Servers.
+        Behalte am besten den ZIP-Namen als Ordnernamen bei, das ist dein
+        Resource-Name.
+      </Step>
+      <Step title="In der server.cfg starten">
+        Trage die Resource mit `ensure` ein:
+
+        ```cfg server.cfg
+        ensure mein-script
+        ```
+      </Step>
+      <Step title="Server neu starten">
+        Starte deinen Server neu, damit die Resource geladen wird.
+      </Step>
+    </Steps>
+
+    <Warning>
+      Nutzt deine Resource ein Framework, muss dieses (z. B. `es_extended`,
+      `qb-core` oder `qbx_core`) in der `server.cfg` **vor** deiner Resource
+      gestartet werden.
+    </Warning>
+
+    Eine ausführliche Anleitung inklusive Ordnerstruktur findest du unter
+    [Export & Installation](/de/export-installation).
+  </Accordion>
+
+  <Accordion title="Kostet LP-DevTool etwas?" icon="euro-sign">
+    Während der **Beta ist LP-DevTool kostenlos**. Es sind für jeden Account
+    sämtliche Builder und Funktionen aller Stufen freigeschaltet, du brauchst kein
+    Upgrade und musst nichts bezahlen.
+
+    Später wird es drei Stufen geben (**Basis**, **Creator** und **Pro**). In der
+    App siehst du unter **Upgrade** bereits die Übersicht der späteren Pakete,
+    während der Beta steht dort bei jedem Paket „In der Beta inklusive".
+
+    <Note>
+      Mehr Details zu den Stufen und zur Beta findest du unter
+      [Mitgliedschaft & Beta](/de/mitgliedschaft-beta).
+    </Note>
+  </Accordion>
+
+  <Accordion title="Wo bekomme ich Hilfe?" icon="discord">
+    Der schnellste Weg ist unser **Discord**. Dort läuft alles rund um die Beta,
+    du bekommst Support, Updates und kannst Feedback geben.
+
+    <Card title="LP-Scripts Discord" icon="discord" href="https://discord.com/invite/W7uzcDCKnJ">
+      Tritt der Community bei und stell deine Frage.
+    </Card>
+
+    Zusätzlich erreichst du diese Dokumentation jederzeit über **Hilfe und Docs**
+    im Account-Menü der App.
+  </Accordion>
+</AccordionGroup>
+
+## Weitere Fragen
+
+<AccordionGroup>
+  <Accordion title="Wie melde ich mich an?" icon="discord">
+    Die Anmeldung läuft komplett über Discord. Du klickst auf **Mit Discord
+    anmelden**, bestätigst den Zugriff und landest danach direkt in deinem
+    Dashboard. Ein separates Passwort brauchst du nicht. Mehr dazu unter
+    [Erste Schritte](/de/erste-schritte).
+  </Accordion>
+
+  <Accordion title="Kann ich bestehende Scripts weiterverwenden?" icon="file-import">
+    Ja. Der integrierte Lua-Parser analysiert vorhandene Scripts und wandelt sie
+    in visuelle Bausteine um. So kannst du bestehenden Code im Builder
+    weiterbearbeiten, erweitern und wieder als Resource exportieren.
+  </Accordion>
+
+  <Accordion title="Kann ich LP-DevTool produktiv auf einem Live-Server einsetzen?" icon="triangle-exclamation">
+    Da sich die Plattform in der Beta befindet, ist sie zum Ausprobieren, Bauen
+    und Feedback-Geben gedacht und aktuell nicht für den produktiven Einsatz auf
+    einem Live-Server vorgesehen.
+  </Accordion>
+</AccordionGroup>
+
+## Nächste Schritte
+
+<CardGroup cols={2}>
+  <Card title="Script Builder" icon="cubes" href="/de/script-builder">
+    Steige in den Kern von LP-DevTool ein und baue dein erstes Script.
+  </Card>
+  <Card title="Export & Installation" icon="box" href="/de/export-installation">
+    Erfahre, wie du Resources baust, herunterlädst und installierst.
+  </Card>
+</CardGroup>

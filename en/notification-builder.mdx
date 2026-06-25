@@ -1,0 +1,197 @@
+﻿---
+title: "Notification Builder"
+description: "Design your own FiveM notifications with variants, position, animation, colors, icons and duration: and export them as a ready-to-use resource."
+---
+
+The **Notification Builder** lets you design your own notification style for your FiveM server. You define the look, position, colors, icons, animation and display duration, watch the result in a live preview, and export a ready-to-use resource as a ZIP file. The generated resource hooks into ESX (`es_extended`) and automatically replaces its standard notifications with your design.
+
+<Note>
+The **Description** field in the builder is for preview only. The actual text of a notification comes at runtime from the script that triggers it (e.g. "Received $15,000"). In the builder you design the appearance, not the specific message texts.
+</Note>
+
+## The three variants
+
+A notification has three variants, each of which you can style completely independently. Switch between them using the tabs above the preview:
+
+- **Information**: neutral hints
+- **Success**: successfully completed actions
+- **Error**: failed actions or warnings
+
+<Note>
+If a script triggers a notification of type `warning`, `danger` or `inform`, it is mapped automatically: `inform` uses the **Information** variant, while `warning` and `danger` use the **Error** variant. Unknown types fall back to **Information**. So by styling three variants you cover all incoming types.
+</Note>
+
+## Interface overview
+
+<CardGroup cols={3}>
+  <Card title="Header bar">
+    Project name, position, template picker, plus the "Reset" and "Build & Download" buttons.
+  </Card>
+  <Card title="Live preview">
+    Shows the currently selected variant in real time. Use "Play test" to replay the entrance animation.
+  </Card>
+  <Card title="Settings panel">
+    On the right, grouped by topic: content, layout, background, border, accent, icon, typography, animation and transform.
+  </Card>
+</CardGroup>
+
+## Step by step
+
+<Steps>
+  <Step title="Set a project name">
+    Enter a name in the top left. It is later used as the filename of the exported ZIP.
+  </Step>
+  <Step title="Optionally load a template">
+    Pick one of the included designs from the **Template** dropdown as a starting point. All settings are applied and remain fully editable.
+  </Step>
+  <Step title="Choose a position">
+    Use **Position** to decide where notifications appear on screen.
+  </Step>
+  <Step title="Select and style a variant">
+    Switch between **Information**, **Success** and **Error** via the tabs and adjust content, colors, animation and more for each variant.
+  </Step>
+  <Step title="Test the preview">
+    Click **Play test** to check the entrance animation of the active variant.
+  </Step>
+  <Step title="Export">
+    Click **Build & Download** to download the finished resource as a ZIP.
+  </Step>
+</Steps>
+
+## Position
+
+The position applies globally to all variants. Six anchor points are available:
+
+- Top left, Top center, Top right
+- Bottom left, Bottom center, Bottom right
+
+<Note>
+For the bottom positions, notifications that appear at the same time stack from bottom to top, so the newest one always sits at the screen edge.
+</Note>
+
+## Settings in detail
+
+The **Width** (250-480 px) and the **Position** apply to the entire notification. All other settings can be configured separately per variant.
+
+### Content
+
+- **Title**: the heading (1-48 characters). It is shown in uppercase in the final notification.
+- **Description (preview)**: for the builder preview only (up to 160 characters). The real text comes from the script at runtime.
+- **Icon**: pick from nine symbols: Info, Check, Cross, Warning, Shield, Bell, Ban, Bolt and Star.
+
+### Layout
+
+- **Width**: 250-480 px (global)
+- **Height**: 50-150 px
+- **Display duration**: 1000-12000 ms (in 500 ms steps); also controls the progress bar that runs out along the bottom edge.
+
+### Background
+
+- **Type**: **Solid** or **Gradient**.
+- Solid: a single **color**.
+- Gradient: **gradient start**, **gradient end** and **gradient angle** (0-360°).
+- **Opacity**: 0-100 %.
+
+### Border & shadow
+
+- **Corner radius**: 0-32 px
+- **Border width**: 0-6 px
+- **Border color**
+- **Shadow glow**: 0-40 px
+- **Shadow color**
+
+### Accent bar
+
+- **Show accent**: toggle the colored bar on the side of the notification.
+- **Accent color**
+- **Accent width**: 2-12 px
+
+### Icon style
+
+- **Icon background**: background color of the icon tile.
+- **Icon symbol color**: color of the symbol itself.
+
+### Typography
+
+- **Title size**: 10-24 px
+- **Title color**
+- **Text size**: 9-18 px
+- **Text color**
+
+### Animation
+
+- **Entrance**: entrance animation: Slide (right), Slide (left), Slide (top), Slide (bottom), Fade or Zoom.
+- **Duration**: 100-2000 ms.
+- **Easing**: Ease (default), Linear, Ease-In, Ease-Out, Ease-In-Out or Custom.
+
+<Note>
+With the **Custom** easing, four additional bezier sliders (X1, Y1, X2, Y2) appear for a fully custom easing curve. X1/X2 range from 0-1, Y1/Y2 from -0.5-1.5.
+</Note>
+
+### Transform
+
+Fine spatial adjustments of the notification container:
+
+- **Scale**: 0.5-1.5
+- **Offset X** / **Offset Y**: -100-100 px each
+- **Rotation**: -180-180°
+- **Skew X** / **Skew Y**: -45-45° each
+
+## Templates
+
+Use the **Template** dropdown to load a ready-made design as a starting point. Every value can then be adjusted freely.
+
+<CardGroup cols={2}>
+  <Card title="Cyberpunk">
+    Edgy neon design in pink/cyan, with hard corners and a slight skew.
+  </Card>
+  <Card title="Frosted Glass">
+    Bright, translucent frosted-glass look with a zoom animation.
+  </Card>
+  <Card title="Emerald Glass">
+    Dark gradients with emerald-green accents.
+  </Card>
+  <Card title="Obsidian Gold">
+    Deep black background with golden accents.
+  </Card>
+  <Card title="Crimson Tactical">
+    Tactical, military style with a bold accent bar.
+  </Card>
+  <Card title="Minimal Paper">
+    Clean, minimal design with a subtle fade-in animation.
+  </Card>
+</CardGroup>
+
+## Preview & test
+
+The live preview always shows the currently selected variant. Switch the variant via the tabs, and use **Play test** to replay the entrance animation together with the running progress bar. This lets you check animation, duration and position before exporting.
+
+## Build & Download
+
+**Build & Download** generates the finished FiveM resource and downloads it as a ZIP (named after your project). The archive contains everything needed: `fxmanifest.lua`, the client script and the NUI files (HTML, CSS, JavaScript) with your design.
+
+<Steps>
+  <Step title="Unzip the file">
+    Extract the downloaded file into your server's `resources` folder.
+  </Step>
+  <Step title="Start the resource">
+    Add the resource to your `server.cfg` (e.g. `ensure your_resource_name`).
+  </Step>
+  <Step title="Restart the server">
+    Restart the server or load the resource. Your design is now active.
+  </Step>
+</Steps>
+
+## Using it in-game
+
+The generated resource hooks into ESX (`es_extended`) automatically: existing ESX notifications (`ESX.ShowNotification`, the `ESX:Notify` event, and `esx:showNotification` / `esx:showAdvancedNotification`) are rendered in your design without any further changes. You do not need to rewrite your existing scripts.
+
+For a quick in-game check, the command `/lpnotify_test` is available, which triggers a test notification of the Information type.
+
+<Note>
+The resource requires **es_extended** on the server.
+</Note>
+
+## Reset
+
+Use **Reset** at any time to restore the builder's default configuration and start over.

@@ -1,0 +1,205 @@
+﻿---
+title: "Loading Screen Builder"
+description: "Gestalte den Ladebildschirm deines FiveM-Servers mit Logo, Name, Tagline, Fortschrittsbalken, Musik-Player und mehr: frei per Drag platziert. Die Vorschau entspricht exakt dem Export."
+---
+
+Der Loading Screen Builder ist ein visueller Editor, mit dem du den Ladebildschirm deines
+FiveM-Servers zusammenstellst: also das Bild, das Spieler beim Verbinden sehen. Du wählst
+Hintergrund, Schrift und Farben, schaltest einzelne Elemente ein oder aus, platzierst alles per
+Drag direkt im Bild und lädst am Ende eine fertige Resource herunter. Was du in der Vorschau
+siehst, ist genau das, was später beim Verbinden angezeigt wird (WYSIWYG).
+
+## Aufbau des Editors
+
+Der Builder ist in drei Spalten aufgeteilt:
+
+- **Links: Elemente:** Liste aller Bausteine. Jedes Element lässt sich per Schalter ein- oder
+  ausblenden und durch Anklicken zum Bearbeiten auswählen.
+- **Mitte: Vorschau:** Eine maßstabsgetreue 1920×1080-Bühne. Hier ziehst du die Elemente direkt
+  an ihre Position.
+- **Rechts: Einstellungen:** Globale Optionen (**Allgemein**) sowie die Detail-Einstellungen
+  für das aktuell ausgewählte Element.
+
+Oben legst du außerdem den **Projektnamen** fest.
+
+<Note>
+Der Projektname wird auch als Dateiname der exportierten Resource verwendet.
+</Note>
+
+## Elemente
+
+Diese Bausteine stehen zur Verfügung und können einzeln aktiviert werden:
+
+- **Logo**: Bild deines Servers (oder ein Platzhalter, solange keine URL hinterlegt ist)
+- **Servername**: großer Schriftzug
+- **Untertitel**: kurze Tagline unter dem Namen
+- **Fortschritt**: Ladebalken mit optionaler Prozentanzeige
+- **Musik-Player**: Hintergrundmusik mit Titel- und Künstleranzeige
+- **Info & Regeln**: Box mit Titel und einer Stichpunkt-Liste (z. B. Server-Regeln)
+- **Social-Links**: Buttons zu Discord, Store und weiteren Links
+- **Team-Liste**: Box mit Namen und Rollen deines Teams
+
+<Note>
+Standardmäßig sind **Servername**, **Untertitel**, **Fortschritt**, **Info & Regeln** und
+**Social-Links** aktiv. **Logo**, **Musik-Player** und **Team-Liste** sind ausgeblendet -
+aktiviere sie bei Bedarf über den Schalter in der Elementliste.
+</Note>
+
+## Schritt für Schritt zum Ladebildschirm
+
+<Steps>
+<Step title="Hintergrund festlegen">
+Wähle rechts unter **Allgemein** den **Hintergrund-Typ**: **Verlauf**, **Einfarbig** oder
+**Bild**. Je nach Auswahl stellst du die passenden Werte ein (siehe Abschnitt unten). Mit
+**Unschärfe** und **Abdunklung** sorgst du dafür, dass Text und Boxen gut lesbar bleiben.
+</Step>
+
+<Step title="Schrift und Akzentfarbe wählen">
+Lege die **Schriftart** und die **Akzentfarbe** fest. Die Akzentfarbe zieht sich durch das
+ganze Design: sie färbt unter anderem den Ladebalken, die Überschriften der Boxen, die
+Social-Buttons und den Auswahlrahmen.
+</Step>
+
+<Step title="Animation hinzufügen">
+Unter **Animation** belebst du den Hintergrund mit einem dezenten Effekt: **Sternenfeld**,
+**Aurora** oder **Grid**. Wähle **Keine**, wenn du einen ruhigen Hintergrund bevorzugst.
+</Step>
+
+<Step title="Elemente ein- und ausschalten">
+Aktiviere in der linken Liste genau die Elemente, die dein Ladebildschirm zeigen soll, und
+blende den Rest aus.
+</Step>
+
+<Step title="Platzieren">
+Klicke ein Element in der Vorschau an und ziehe es an die gewünschte Stelle. Das aktive Element
+ist mit einer gestrichelten Umrandung in deiner Akzentfarbe markiert. Feinjustieren kannst du
+rechts über **Verankerung**, **Abstand X**, **Abstand Y** und **Größe**.
+</Step>
+
+<Step title="Inhalte pro Element eintragen">
+Trage je Element die passenden Inhalte ein: Servername, Untertitel, Regeln, Links, Team-Mitglieder
+oder die Musik-Daten (siehe unten).
+</Step>
+
+<Step title="Build & Download">
+Klicke oben rechts auf **Build &amp; Download**. Du erhältst eine ZIP-Datei mit der fertigen
+Loadingscreen-Resource.
+</Step>
+</Steps>
+
+## Hintergrund gestalten
+
+Unter **Allgemein → Hintergrund-Typ** wählst du, wie der Hintergrund aufgebaut ist:
+
+- **Verlauf**: ein Farbverlauf aus zwei Farben. Du stellst **Verlauf Start**, **Verlauf Ende**
+  und den **Winkel** (0-360°) ein.
+- **Einfarbig**: eine einzelne **Farbe** als Hintergrund.
+- **Bild**: ein eigenes Hintergrundbild über eine **Bild-URL**. Das Bild wird bildschirmfüllend
+  dargestellt.
+
+Zwei Regler wirken auf jeden Hintergrund-Typ:
+
+- **Unschärfe** (0-30 px): verwischt den Hintergrund, damit Vordergrund-Inhalte besser stehen.
+- **Abdunklung** (0-100 %): legt einen dunklen Verlauf über den Hintergrund für mehr Kontrast.
+
+### Animierter Hintergrund
+
+Über **Animation** legst du einen dezenten Bewegungs-Effekt über den Hintergrund:
+
+- **Keine**: statischer Hintergrund
+- **Sternenfeld**: langsam ziehende Sterne
+- **Aurora**: weiche, leuchtende Farbschleier in deiner Akzentfarbe
+- **Grid**: ein dezent scrollendes Raster
+
+<Note>
+Alle Animationen respektieren die System-Einstellung „Bewegung reduzieren“: wer das aktiviert
+hat, sieht einen ruhigen Hintergrund.
+</Note>
+
+## Schrift und Akzentfarbe
+
+- **Schriftart**: wähle zwischen **Inter**, **Orbitron**, **Rajdhani**, **Montserrat**,
+  **Roboto** und **Courier Prime**.
+- **Akzentfarbe**: durchgängige Hauptfarbe (Ladebalken, Box-Überschriften, Social-Buttons,
+  Auswahlrahmen). Die Farbe gibst du per Farbwähler oder als Hex-Wert ein.
+
+## Elemente im Detail
+
+Wähle ein Element in der linken Liste oder direkt in der Vorschau, um rechts seine Optionen zu
+sehen. Jedes Element hat die Positions-Regler (siehe „Feinpositionierung“) sowie eigene Inhalte:
+
+### Logo
+
+Hinterlege unter **Logo-URL** den Link zu deinem Logo-Bild (z. B. PNG). Solange keine URL
+gesetzt ist, zeigt die Vorschau einen **LOGO**-Platzhalter.
+
+### Servername & Untertitel
+
+- **Servername**: der große Schriftzug deines Servers.
+- **Untertitel**: eine kurze Tagline, die unter dem Namen steht.
+
+### Fortschritt
+
+Der Ladebalken zeigt im Spiel den echten Ladefortschritt an. Du stellst ein:
+
+- **Balken-Stil**: **Schlicht**, **Gestreift**, **Glow** oder **Punkte**.
+- **Prozent anzeigen**: blendet die Prozentzahl unter dem Balken ein oder aus.
+
+<Note>
+In der Vorschau steht der Balken zur Veranschaulichung auf einem festen Wert. Beim Verbinden
+füllt er sich entsprechend dem tatsächlichen Ladefortschritt.
+</Note>
+
+### Musik-Player
+
+Spielt beim Verbinden Hintergrundmusik ab und zeigt eine kompakte Player-Karte:
+
+- **Titel** und **Künstler**: Text der Player-Karte.
+- **Audio-URL (mp3/ogg)**: Link zur Audiodatei.
+- **Lautstärke** (0-100 %).
+- **Automatisch starten**: ob die Musik direkt losspielt.
+
+### Info & Regeln
+
+Eine Box mit **Titel** und einer Stichpunkt-Liste: ideal für Server-Regeln oder Hinweise. Über
+**Regel hinzufügen** ergänzt du Einträge, über das Papierkorb-Symbol entfernst du sie. Es sind
+bis zu **12** Einträge möglich.
+
+### Social-Links
+
+Buttons zu deinen Kanälen. Jeder Link besteht aus einem **Label** (z. B. „Discord“) und einer
+**URL**. Über **Link hinzufügen** ergänzt du weitere, bis zu **8** Stück.
+
+### Team-Liste
+
+Eine Box mit **Titel** und einer Liste deines Teams. Jedes Mitglied hat einen **Namen** und eine
+**Rolle**. Über **Mitglied hinzufügen** ergänzt du Einträge, bis zu **12** Stück.
+
+## Feinpositionierung
+
+Jedes Element platzierst du per Drag in der Vorschau und justierst es rechts mit diesen Reglern:
+
+- **Verankerung**: Ecke, an der das Element ausgerichtet wird: **Oben links**, **Oben rechts**,
+  **Unten links** oder **Unten rechts**.
+- **Abstand X**: horizontaler Abstand zur Ecke (0-1920 px).
+- **Abstand Y**: vertikaler Abstand zur Ecke (0-1080 px).
+- **Größe**: Skalierung von 50 % bis 250 %.
+
+Die Verankerung bestimmt, von welcher Bildschirmecke aus Abstand X und Y gemessen werden: so
+bleibt dein Ladebildschirm auf unterschiedlichen Auflösungen sauber positioniert.
+
+## Zurücksetzen
+
+Mit **Zurücksetzen** (oben rechts) stellst du den Builder auf die Standard-Konfiguration zurück.
+Dabei gehen deine aktuellen Anpassungen verloren.
+
+## Vorschau = Export
+
+Die Vorschau rendert deinen Ladebildschirm mit denselben Stilen, die auch in die exportierte
+Resource geschrieben werden. Dadurch entspricht das, was du im Editor siehst, exakt dem
+Endergebnis beim Verbinden.
+
+<Card title="Ergebnis exportieren" icon="download">
+Mit **Build &amp; Download** erzeugst du eine ZIP-Datei mit der einsatzbereiten
+Loadingscreen-Resource für deinen Server.
+</Card>

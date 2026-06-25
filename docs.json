@@ -1,0 +1,93 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "LP-DevTool",
+  "colors": {
+    "primary": "#6d5ce6",
+    "light": "#a78bfa",
+    "dark": "#5b54e6"
+  },
+  "favicon": "/favicon.png",
+  "navigation": {
+    "languages": [
+      {
+        "language": "de",
+        "default": true,
+        "groups": [
+          {
+            "group": "Start",
+            "pages": ["de/einfuehrung", "de/erste-schritte"]
+          },
+          {
+            "group": "Builder",
+            "pages": [
+              "de/script-builder",
+              "de/hud-builder",
+              "de/notification-builder",
+              "de/easy-nui",
+              "de/loading-screen"
+            ]
+          },
+          {
+            "group": "Grundlagen",
+            "pages": ["de/frameworks", "de/export-installation"]
+          },
+          {
+            "group": "Funktionen",
+            "pages": [
+              "de/store-bausteine",
+              "de/meine-scripts-aktivitaet",
+              "de/mitgliedschaft-beta",
+              "de/faq"
+            ]
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "groups": [
+          {
+            "group": "Start",
+            "pages": ["en/einfuehrung", "en/erste-schritte"]
+          },
+          {
+            "group": "Builders",
+            "pages": [
+              "en/script-builder",
+              "en/hud-builder",
+              "en/notification-builder",
+              "en/easy-nui",
+              "en/loading-screen"
+            ]
+          },
+          {
+            "group": "Basics",
+            "pages": ["en/frameworks", "en/export-installation"]
+          },
+          {
+            "group": "Features",
+            "pages": [
+              "en/store-bausteine",
+              "en/meine-scripts-aktivitaet",
+              "en/mitgliedschaft-beta",
+              "en/faq"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Zur App",
+      "href": "https://lp-scripts.at"
+    }
+  },
+  "footer": {
+    "socials": {
+      "discord": "https://discord.com/invite/W7uzcDCKnJ",
+      "website": "https://lp-scripts.at"
+    }
+  }
+}

@@ -1,0 +1,170 @@
+﻿---
+title: "Easy NUI Builder"
+description: "Baue per Drag-and-Drop In-Game-UIs, Overlays und Menüs und exportiere sie als fertige FiveM-NUI-Resource."
+---
+
+Mit dem Easy NUI Builder erstellst du visuelle In-Game-Oberflächen für deinen FiveM-Server, ganz ohne HTML, CSS oder JavaScript zu schreiben. Du platzierst Panels, Texte, Buttons, Eingabefelder und Bilder per Drag-and-Drop auf einer Vorschau-Fläche und exportierst das Ergebnis als komplette, lauffähige NUI-Resource.
+
+<Note>
+  Der Build & Download der Easy-NUI-Resource ist ab dem Pro-Paket verfügbar. Den Editor kannst du jederzeit ausprobieren; für den Export wird Pro benötigt.
+</Note>
+
+## Aufbau des Editors
+
+Der Builder ist in drei Bereiche aufgeteilt:
+
+<CardGroup cols={3}>
+  <Card title="Elemente" icon="layout-panel-top">
+    Die Palette links. Hier wählst du den Element-Typ, der dem Canvas hinzugefügt werden soll.
+  </Card>
+  <Card title="Canvas" icon="monitor">
+    Die Vorschau in der Mitte mit Gameplay-Hintergrund. Hier positionierst du deine Elemente per Maus.
+  </Card>
+  <Card title="Eigenschaften" icon="sliders-horizontal">
+    Das Panel rechts. Hier stellst du allgemeine Optionen und die Details des ausgewählten Elements ein.
+  </Card>
+</CardGroup>
+
+Oberhalb der drei Bereiche liegt die Kopfzeile mit den Projekteinstellungen und dem **Build &amp; Download**-Button.
+
+## Projekt einrichten
+
+Lege zuerst die Grundeinstellungen deines NUI-Projekts in der Kopfzeile fest.
+
+<Steps>
+  <Step title="Projektname vergeben">
+    Trage unter **Projektname** einen Namen ein. Dieser wird auch als Dateiname der exportierten ZIP-Datei verwendet (z. B. `Mein Easy NUI.zip`).
+  </Step>
+  <Step title="Befehl festlegen">
+    Unter **Befehl** definierst du das Chat-Kommando, mit dem die Oberfläche im Spiel geöffnet wird. Erlaubt sind nur Kleinbuchstaben, Ziffern und Unterstriche; andere Zeichen werden automatisch entfernt. Mit dem Standardwert `menu` öffnest du das NUI im Spiel über `/menu`.
+  </Step>
+  <Step title="Framework wählen">
+    Wähle dein Framework: **ESX**, **QBCore / QB**, **Qbox** oder **Standalone**. Die Auswahl trägt die passende Abhängigkeit in die `fxmanifest.lua` ein (`es_extended`, `qb-core` bzw. `qbx_core`). Bei **Standalone** wird keine Abhängigkeit gesetzt.
+  </Step>
+  <Step title="Akzentfarbe setzen">
+    Im Eigenschaften-Panel rechts findest du unter **Allgemein** die **Akzentfarbe**. Sie färbt die Beschriftung von Info-Karten, die Standardfarbe neuer Buttons und den Fokusrahmen von Eingabefeldern. Du kannst sie über den Farbwähler oder als Hex-Wert (z. B. `#7C5CFF`) eingeben.
+  </Step>
+</Steps>
+
+## Elemente hinzufügen
+
+Klicke in der Palette links auf einen Element-Typ, um ihn dem Canvas hinzuzufügen. Das neue Element wird sofort ausgewählt, sodass du es direkt im Eigenschaften-Panel anpassen kannst.
+
+<CardGroup cols={2}>
+  <Card title="Panel" icon="layout-panel-top">
+    Eine Glas-Box mit **Titel** und **Text**: ideal als Container oder Info-Block.
+  </Card>
+  <Card title="Info-Karte" icon="info">
+    Kompakte Status-Anzeige mit **Titel** (in Akzentfarbe, Großbuchstaben) und einem hervorgehobenen **Wert**.
+  </Card>
+  <Card title="Text" icon="type">
+    Eine einzelne freie **Textzeile** ohne Hintergrund.
+  </Card>
+  <Card title="Button" icon="mouse-pointer-click">
+    Eine klickbare Schaltfläche mit **Beschriftung**, **Aktion** und eigener **Farbe**.
+  </Card>
+  <Card title="Eingabe" icon="text-cursor-input">
+    Ein Textfeld mit **Platzhalter** und **Variable**, dessen Eingabe an dein Lua weitergegeben wird.
+  </Card>
+  <Card title="Bild" icon="image">
+    Ein Bildbereich, der ein Bild von einer **http(s)-URL** anzeigt.
+  </Card>
+</CardGroup>
+
+<Note>
+  Pro Projekt kannst du bis zu 40 Elemente platzieren.
+</Note>
+
+## Elemente positionieren und anpassen
+
+Jedes Element lebt frei auf dem Canvas und wird in Prozent der Fläche positioniert: so passt dein Layout auf jede Auflösung.
+
+- **Verschieben:** Ziehe ein Element mit gedrückter Maustaste an die gewünschte Stelle. Das aktuell ausgewählte Element ist durch einen farbigen Rahmen markiert.
+- **Auswählen:** Klicke ein Element an, um es im rechten Panel zu bearbeiten.
+- **Größe und Position fein einstellen:** Nutze die Schieberegler **X**, **Y**, **Breite** und **Höhe** im Eigenschaften-Panel. Über den Reglern siehst du jeweils den aktuellen Prozentwert.
+- **Löschen:** Klicke auf das Papierkorb-Symbol oben rechts im Element-Bereich.
+
+<Tip>
+  Der Gameplay-Hintergrund im Canvas dient nur als Vorschau. Die exportierte Oberfläche hat einen transparenten Hintergrund und legt sich als Overlay über das Spiel.
+</Tip>
+
+## Buttons und Interaktionen
+
+Buttons sind der interaktive Teil deiner Oberfläche. Im Eigenschaften-Panel legst du fest, was beim Klick passiert.
+
+- **Beschriftung:** Der angezeigte Text des Buttons.
+- **Button-Farbe:** Eine eigene Farbe pro Button, unabhängig von der globalen Akzentfarbe.
+- **Aktion:** Entweder **NUI schließen** (schließt die Oberfläche und gibt die Steuerung frei) oder **Lua-Callback**.
+
+Bei der Aktion **Lua-Callback** trägst du zusätzlich einen **Callback-Namen** ein. Beim Klick löst der Button in deinem Server ein Lua-Event aus, sodass du eigene Logik anhängen kannst. Das Event heißt `lp_nui:` gefolgt von deinem Callback-Namen und erhält die Werte aller Eingabefelder als Tabelle:
+
+```lua
+AddEventHandler('lp_nui:meinCallback', function(values)
+    -- values enthält die Eingabefelder, z. B. values.eingabe
+    print(values.eingabe)
+end)
+```
+
+<Note>
+  Callback-Namen und Variablen dürfen nur Buchstaben, Ziffern und Unterstriche enthalten. Ungültige Zeichen werden bei der Eingabe automatisch entfernt.
+</Note>
+
+## Eingabefelder und Variablen
+
+Mit dem Element **Eingabe** sammelst du Texteingaben des Spielers.
+
+- **Platzhalter:** Der Hinweistext, der im leeren Feld angezeigt wird.
+- **Variable:** Der Name, unter dem der eingegebene Wert übergeben wird.
+
+Beim Klick auf einen Button mit Lua-Callback werden die Werte aller Eingabefelder gesammelt und unter ihren Variablennamen an dein Lua-Event übergeben (siehe Beispiel oben).
+
+## Bilder
+
+Das Element **Bild** zeigt eine Grafik über eine **Bild-URL** an. Es sind ausschließlich `http(s)`-URLs erlaubt; das Bild wird flächenfüllend in den Element-Bereich eingepasst. Hinterlege hier eine extern gehostete Bild-URL.
+
+## Export als NUI-Resource
+
+Wenn dein Layout steht, exportierst du es als fertige FiveM-Resource.
+
+<Steps>
+  <Step title="Build & Download klicken">
+    Klicke oben rechts auf **Build &amp; Download**. Deine Konfiguration wird serverseitig zu einer Resource kompiliert und als ZIP-Datei heruntergeladen.
+  </Step>
+  <Step title="ZIP entpacken">
+    Entpacke die heruntergeladene Datei. Du erhältst einen kompletten Resource-Ordner.
+  </Step>
+</Steps>
+
+Die exportierte Resource enthält folgende Dateien:
+
+| Datei | Inhalt |
+| --- | --- |
+| `fxmanifest.lua` | Manifest mit Framework-Abhängigkeit und eingebundenen Dateien |
+| `client/client.lua` | Registriert den Befehl, öffnet/schließt das NUI und leitet Callbacks weiter |
+| `html/index.html` | Das gerenderte Layout deiner Elemente |
+| `html/style.css` | Das Styling inklusive deiner Akzentfarbe |
+| `html/script.js` | Die Logik für Buttons, Eingaben und das Schließen |
+
+## Im Server einbinden
+
+<Steps>
+  <Step title="Resource ablegen">
+    Kopiere den entpackten Ordner in dein `resources`-Verzeichnis. Benenne ihn bei Bedarf passend zu deinem Projekt.
+  </Step>
+  <Step title="In der server.cfg starten">
+    Füge `ensure <resource-name>` in deine `server.cfg` ein und starte den Server neu (oder nutze `refresh` + `ensure` in der Live-Konsole).
+  </Step>
+  <Step title="Im Spiel öffnen">
+    Tippe im Spiel den festgelegten Befehl, z. B. `/menu`. Die Oberfläche erscheint und der Mausfokus wird aktiviert.
+  </Step>
+  <Step title="Schließen">
+    Die Oberfläche lässt sich über die Taste **ESC** oder über einen Button mit der Aktion **NUI schließen** wieder ausblenden.
+  </Step>
+  <Step title="Callbacks anbinden">
+    Hänge deine eigene Logik an die `lp_nui:<callback>`-Events an, um auf Button-Klicks und Eingaben zu reagieren.
+  </Step>
+</Steps>
+
+## Eingaben werden automatisch geprüft
+
+Beim Export werden alle Inhalte validiert und abgesichert: Texte werden HTML-sicher kodiert, Farben müssen gültige Hex-Werte sein, Bild-URLs müssen mit `http(s)` beginnen, und Befehle, Variablen sowie Callback-Namen sind auf erlaubte Zeichen begrenzt. So entsteht aus deinem Layout zuverlässig sauberer, gültiger Code.

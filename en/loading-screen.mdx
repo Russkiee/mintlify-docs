@@ -1,0 +1,203 @@
+﻿---
+title: "Loading Screen Builder"
+description: "Design your FiveM server's loading screen with logo, name, tagline, progress bar, music player and more: placed freely by drag. The preview matches the export exactly."
+---
+
+The Loading Screen Builder is a visual editor for putting together your FiveM server's loading
+screen: the image players see while connecting. You pick the background, font and colors, toggle
+individual elements on or off, place everything by dragging directly on the image, and download a
+finished resource at the end. What you see in the preview is exactly what players get when
+connecting (WYSIWYG).
+
+## How the editor is laid out
+
+The builder is split into three columns:
+
+- **Left: Elements:** A list of all building blocks. Each element can be shown or hidden with a
+  switch and selected for editing by clicking it.
+- **Center: Preview:** A true-to-scale 1920×1080 stage. This is where you drag elements into
+  position.
+- **Right: Settings:** Global options (**General**) plus the detailed settings for the currently
+  selected element.
+
+At the top you also set the **project name**.
+
+<Note>
+The project name is also used as the file name of the exported resource.
+</Note>
+
+## Elements
+
+These building blocks are available and can be enabled individually:
+
+- **Logo**: your server's image (or a placeholder while no URL is set)
+- **Server name**: large heading
+- **Tagline**: short subtitle below the name
+- **Progress**: loading bar with an optional percentage display
+- **Music player**: background music with title and artist
+- **Info & rules**: box with a title and a bullet list (e.g. server rules)
+- **Social links**: buttons for Discord, store and other links
+- **Team list**: box with your team's names and roles
+
+<Note>
+By default **Server name**, **Tagline**, **Progress**, **Info & rules** and **Social links** are
+active. **Logo**, **Music player** and **Team list** are hidden: enable them when needed using
+the switch in the element list.
+</Note>
+
+## Building a loading screen step by step
+
+<Steps>
+<Step title="Set the background">
+On the right under **General**, pick the **Background type**: **Gradient**, **Solid color** or
+**Image**. Depending on your choice, set the matching values (see the section below). Use **Blur**
+and **Dim** to keep text and boxes readable.
+</Step>
+
+<Step title="Choose font and accent color">
+Set the **Font** and the **Accent color**. The accent color runs through the whole design: among
+other things it colors the loading bar, the box headings, the social buttons and the selection
+outline.
+</Step>
+
+<Step title="Add an animation">
+Under **Animation** you can bring the background to life with a subtle effect: **Starfield**,
+**Aurora** or **Grid**. Choose **None** if you prefer a calm background.
+</Step>
+
+<Step title="Toggle elements on and off">
+In the left list, enable exactly the elements your loading screen should show and hide the rest.
+</Step>
+
+<Step title="Place elements">
+Click an element in the preview and drag it to where you want it. The active element is marked
+with a dashed outline in your accent color. Fine-tune it on the right via **Anchor**, **Offset X**,
+**Offset Y** and **Size**.
+</Step>
+
+<Step title="Fill in each element's content">
+Enter the relevant content per element: server name, tagline, rules, links, team members or the
+music details (see below).
+</Step>
+
+<Step title="Build & Download">
+Click **Build &amp; Download** in the top right. You get a ZIP file with the finished loading
+screen resource.
+</Step>
+</Steps>
+
+## Designing the background
+
+Under **General → Background type** you choose how the background is built:
+
+- **Gradient**: a two-color gradient. You set **Gradient start**, **Gradient end** and the
+  **Angle** (0-360°).
+- **Solid color**: a single **color** as the background.
+- **Image**: your own background image via an **Image URL**. The image is shown full screen.
+
+Two sliders apply to every background type:
+
+- **Blur** (0-30 px): blurs the background so foreground content stands out.
+- **Dim** (0-100 %): lays a dark gradient over the background for more contrast.
+
+### Animated background
+
+Via **Animation** you add a subtle motion effect on top of the background:
+
+- **None**: static background
+- **Starfield**: slowly drifting stars
+- **Aurora**: soft, glowing color veils in your accent color
+- **Grid**: a gently scrolling grid
+
+<Note>
+All animations respect the system "reduce motion" setting: anyone who has it enabled sees a calm
+background.
+</Note>
+
+## Font and accent color
+
+- **Font**: choose between **Inter**, **Orbitron**, **Rajdhani**, **Montserrat**, **Roboto** and
+  **Courier Prime**.
+- **Accent color**: the consistent main color (loading bar, box headings, social buttons,
+  selection outline). Set it with the color picker or as a hex value.
+
+## Elements in detail
+
+Select an element in the left list or directly in the preview to see its options on the right.
+Every element has the positioning sliders (see "Fine positioning") plus its own content:
+
+### Logo
+
+Set the link to your logo image (e.g. PNG) under **Logo URL**. As long as no URL is set, the
+preview shows a **LOGO** placeholder.
+
+### Server name & tagline
+
+- **Server name**: your server's large heading.
+- **Tagline**: a short subtitle shown below the name.
+
+### Progress
+
+The loading bar shows the real loading progress in game. You can set:
+
+- **Bar style**: **Sleek**, **Striped**, **Glow** or **Dots**.
+- **Show percent**: shows or hides the percentage below the bar.
+
+<Note>
+In the preview the bar sits at a fixed value for illustration. When connecting, it fills according
+to the actual loading progress.
+</Note>
+
+### Music player
+
+Plays background music while connecting and shows a compact player card:
+
+- **Title** and **Artist**: the player card's text.
+- **Audio URL (mp3/ogg)**: link to the audio file.
+- **Volume** (0-100 %).
+- **Autoplay**: whether the music starts on its own.
+
+### Info & rules
+
+A box with a **Title** and a bullet list: ideal for server rules or notices. Use **Add rule** to
+add entries and the trash icon to remove them. Up to **12** entries are possible.
+
+### Social links
+
+Buttons to your channels. Each link has a **Label** (e.g. "Discord") and a **URL**. Use **Add
+link** to add more, up to **8** in total.
+
+### Team list
+
+A box with a **Title** and a list of your team. Each member has a **Name** and a **Role**. Use
+**Add member** to add entries, up to **12** in total.
+
+## Fine positioning
+
+You place every element by dragging it in the preview and fine-tune it on the right with these
+controls:
+
+- **Anchor**: the corner the element is aligned to: **Top left**, **Top right**, **Bottom left**
+  or **Bottom right**.
+- **Offset X**: horizontal distance from the corner (0-1920 px).
+- **Offset Y**: vertical distance from the corner (0-1080 px).
+- **Size**: scaling from 50 % to 250 %.
+
+The anchor determines which screen corner Offset X and Y are measured from: this keeps your
+loading screen cleanly positioned across different resolutions.
+
+## Reset
+
+**Reset** (top right) returns the builder to the default configuration. Your current changes are
+lost in the process.
+
+## Preview = export
+
+The preview renders your loading screen with the same styles that are written into the exported
+resource. As a result, what you see in the editor matches the final result when connecting
+exactly.
+
+<Card title="Export the result" icon="download">
+With **Build &amp; Download** you generate a ZIP file containing the ready-to-use loading screen
+resource for your server.
+</Card>

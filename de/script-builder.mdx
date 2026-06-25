@@ -1,0 +1,156 @@
+﻿---
+title: "Script Builder"
+description: "Baue lauffähige FiveM-Lua-Scripts visuell aus Blöcken zusammen und exportiere sie als fertige Resource."
+---
+
+Der Script Builder ist das Herzstück des LP-DevTool. Du steckst dein Script aus vorgefertigten Bausteinen zusammen, konfigurierst jeden Baustein über einfache Felder und lässt das Tool daraus sauberes Lua plus `fxmanifest.lua` generieren. Lua-Kenntnisse sind nicht nötig.
+
+## Aufbau der Oberfläche
+
+Der Builder ist in drei Spalten aufgeteilt:
+
+<CardGroup cols={3}>
+  <Card title="Bausteine" icon="shapes">
+    Die linke Spalte enthält den Katalog aller verfügbaren Blöcke, nach Kategorie gruppiert. Ein Klick fügt den Baustein hinzu.
+  </Card>
+  <Card title="Ablauf" icon="list-ordered">
+    Die mittlere Spalte zeigt die Reihenfolge deiner Bausteine. Hier sortierst, wählst und löschst du sie.
+  </Card>
+  <Card title="Konfiguration" icon="sliders">
+    Die rechte Spalte zeigt die Einstellungen des aktuell ausgewählten Bausteins.
+  </Card>
+</CardGroup>
+
+Oben findest du die Kopfzeile mit **Name**, **Framework** und den Aktionen **Speichern** und **Build & Download**. Darunter wählst du über Tabs den Geltungsbereich (Scope).
+
+## Schritt für Schritt
+
+<Steps>
+  <Step title="Namen vergeben">
+    Trage oben links einen Namen für dein Script ein (1 bis 60 Zeichen). Er wird später auch für die Download-Datei verwendet.
+  </Step>
+  <Step title="Framework wählen">
+    Wähle, für welches Framework das Script gebaut wird: **Standalone**, **ESX**, **QBCore / QB** oder **Qbox**. Die Wahl beeinflusst zum Beispiel, wie Benachrichtigungen erzeugt werden, und fügt bei Bedarf die passende Initialisierung am Anfang der Lua-Datei ein.
+  </Step>
+  <Step title="Scope auswählen">
+    Über die Tabs legst du fest, in welchen Bereich die nächsten Bausteine kommen: **Client · einmalig**, **Client · Schleife** oder **Server**. Jeder Scope hat seine eigene Liste von Bausteinen.
+  </Step>
+  <Step title="Bausteine hinzufügen">
+    Klicke in der linken Spalte auf einen Baustein. Er erscheint im **Ablauf** und wird automatisch ausgewählt.
+  </Step>
+  <Step title="Baustein konfigurieren">
+    Wähle einen Baustein im Ablauf an und fülle rechts unter **Konfiguration** seine Felder aus (z. B. Text, Koordinaten oder ein Fahrzeugmodell).
+  </Step>
+  <Step title="Reihenfolge anpassen">
+    Mit den Pfeilen **nach oben** und **nach unten** sortierst du die Bausteine. Über das **Mülleimer**-Symbol entfernst du einen Baustein.
+  </Step>
+  <Step title="Speichern und bauen">
+    Speichere dein Script mit **Speichern** und erzeuge die fertige Resource über **Build & Download**.
+  </Step>
+</Steps>
+
+## Geltungsbereiche (Scopes)
+
+Jeder Baustein gehört zu einem der drei Geltungsbereiche. Sie bestimmen, wo und wie der erzeugte Code läuft.
+
+| Scope | Tab-Bezeichnung | Verhalten |
+| --- | --- | --- |
+| `single` | Client · einmalig | Läuft einmal beim Start der Resource (in einem `CreateThread`). Ideal für Setup-Aufgaben wie Blips oder einen einmaligen Teleport. |
+| `thread` | Client · Schleife | Läuft dauerhaft in einer Endlosschleife (`while true`) mit einer kurzen Pause am Ende jeder Runde. Für Dinge, die fortlaufend geprüft werden müssen. |
+| `server` | Server | Läuft serverseitig. Hier gehören z. B. Aktionen hin, die alle Spieler betreffen. |
+
+<Note>
+  Die drei Scopes sind unabhängig voneinander. Wenn du den Tab wechselst, bearbeitest du jeweils eine andere Bausteinliste. Beim Build werden die Client-Scopes in `client/client.lua` und der Server-Scope in `server/server.lua` zusammengeführt.
+</Note>
+
+## Verfügbare Bausteine
+
+Die Bausteine sind im Katalog nach Kategorien sortiert.
+
+### UI
+
+- **Benachrichtigung**: Zeigt eine Benachrichtigung an. Feld: *Nachricht*. Die Ausgabe richtet sich nach dem gewählten Framework.
+
+### Debug
+
+- **Konsole ausgeben**: Schreibt einen Text in die Konsole (`print`). Feld: *Text*.
+
+### Steuerung
+
+- **Warten**: Pausiert die Ausführung. Feld: *Millisekunden*.
+
+### Welt
+
+- **Wegpunkt setzen**: Setzt einen Wegpunkt auf der Karte. Felder: *X*, *Y*.
+- **Teleportieren**: Versetzt den Spieler an eine Position. Felder: *X*, *Y*, *Z*.
+- **Blip erstellen**: Erstellt einen Karten-Blip. Felder: *X*, *Y*, *Z*, *Sprite*, *Farbe*, *Bezeichnung*.
+
+### Fahrzeuge
+
+- **Fahrzeug spawnen**: Spawnt ein Fahrzeug und setzt den Spieler hinein. Felder: *Modell*, *X*, *Y*, *Z*, *Ausrichtung*.
+
+### Spieler
+
+- **Waffe geben**: Gibt dem Spieler eine Waffe. Felder: *Waffen-Hash*, *Munition*.
+- **Leben setzen**: Setzt das Leben des Spielers. Feld: *Leben (100-200)*.
+- **Weste setzen**: Setzt die Weste des Spielers. Feld: *Weste (0-100)*.
+- **Spieler einfrieren**: Friert den Spieler ein oder hebt das Einfrieren auf. Feld: *Eingefroren (1/0)*.
+
+### Events
+
+- **Server-Event auslösen**: Löst ein Server-Event aus. Feld: *Event-Name*.
+- **Client-Event auslösen (Server)**: Löst ein Client-Event vom Server aus. Felder: *Event-Name*, *Ziel-ID (-1 = alle)*. Dieser Baustein gehört in den Server-Scope.
+
+<Note>
+  Bei Zahlenfeldern (z. B. Koordinaten oder Munition) wird ein leeres Feld als `0` behandelt. Textfelder werden beim Build automatisch sicher in Lua eingebettet.
+</Note>
+
+## Framework wählen
+
+Das gewählte Framework passt den erzeugten Code an:
+
+| Framework | Auswirkung |
+| --- | --- |
+| **Standalone** | Reines FiveM ohne Abhängigkeiten. Benachrichtigungen nutzen die native GTA-Anzeige. |
+| **ESX** | Fügt die ESX-Initialisierung am Anfang ein. Benachrichtigungen über `ESX.ShowNotification`. |
+| **QBCore / QB** | Fügt die QBCore-Initialisierung ein. Benachrichtigungen über `QBCore.Functions.Notify`. |
+| **Qbox** | Benachrichtigungen über `exports.qbx_core:Notify`. |
+
+## Speichern
+
+Über **Speichern** legst du dein Script in deinem Account ab. Beim ersten Speichern wird das Script angelegt; danach aktualisierst du dasselbe Script bei weiteren Klicks. Gespeicherte Scripts kannst du später wieder öffnen und weiterbearbeiten: inklusive aller drei Scopes, des Namens und des Frameworks.
+
+<Note>
+  Speichern und Bauen sind getrennt. Speichern sichert deinen Bearbeitungsstand; Bauen erzeugt die fertige Resource zum Download.
+</Note>
+
+## Build & Download
+
+Mit **Build & Download** wird aus deinen Bausteinen eine vollständige FiveM-Resource erzeugt und als ZIP-Datei heruntergeladen. Der Dateiname entspricht deinem Script-Namen.
+
+Die ZIP-Datei enthält:
+
+- `fxmanifest.lua`: das Manifest der Resource (inklusive `fx_version`, `game` und den Script-Einträgen).
+- `client/client.lua`: der zusammengeführte Code der Client-Scopes (*einmalig* und *Schleife*).
+- `server/server.lua`: nur vorhanden, wenn du Bausteine im Server-Scope angelegt hast.
+
+So nutzt du die fertige Resource:
+
+<Steps>
+  <Step title="ZIP entpacken">
+    Entpacke die heruntergeladene ZIP-Datei.
+  </Step>
+  <Step title="In den resources-Ordner legen">
+    Kopiere den entpackten Ordner in den `resources`-Ordner deines FiveM-Servers.
+  </Step>
+  <Step title="Resource starten">
+    Trage die Resource in deiner `server.cfg` mit `ensure <name>` ein und starte den Server neu (oder lade die Resource live).
+  </Step>
+</Steps>
+
+## Gut zu wissen
+
+- Der Script-Name muss zwischen 1 und 60 Zeichen lang sein.
+- Pro Scope kannst du sehr viele Bausteine anlegen: für übliche Scripts gibt es praktisch keine Grenze.
+- Alle Eingaben werden beim Build serverseitig geprüft, und Texte werden sicher in den Lua-Code eingebettet. Schlägt der Build fehl, erscheint eine Fehlermeldung mit Hinweis.
+- Die Reihenfolge der Bausteine im **Ablauf** entspricht exakt der Ausführungsreihenfolge im erzeugten Code.

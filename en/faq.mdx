@@ -1,0 +1,150 @@
+﻿---
+title: "Frequently Asked Questions"
+description: "Answers to the most common questions about LP-DevTool: coding knowledge, frameworks, installation, cost during the beta, and where to get help."
+---
+
+Here you'll find short, concrete answers to the questions that come up most often
+when getting started with LP-DevTool. If you still need help afterwards, check the
+linked detail pages or just ask in our [Discord](https://discord.com/invite/W7uzcDCKnJ).
+
+## Getting your bearings
+
+<CardGroup cols={2}>
+  <Card title="What is LP-DevTool?" icon="circle-info" href="/en/einfuehrung">
+    An overview of every builder and feature.
+  </Card>
+  <Card title="Getting Started" icon="rocket" href="/en/erste-schritte">
+    From your first login to your first builder.
+  </Card>
+</CardGroup>
+
+## The most important questions
+
+<AccordionGroup>
+  <Accordion title="Do I need coding knowledge?" icon="code">
+    No. LP-DevTool is a **visual builder**: you drag ready-made blocks such as
+    markers, vehicle spawns, events or database queries into your workspace and
+    configure them directly inside the block. The clean Lua, HTML and CSS code is
+    generated for you behind the scenes.
+
+    So you don't have to write any Lua, HTML or CSS by hand. Prior knowledge never
+    hurts, but it isn't required to build a finished, ready-to-start resource.
+
+    <Note>
+      If you already have Lua code, you can import it with the built-in Lua
+      parser. It turns existing scripts into visual blocks that you can keep
+      editing in the builder.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Which frameworks are supported?" icon="layers">
+    You pick your framework while building, and the generated code adapts
+    automatically:
+
+    - **Standalone**: completely framework-free scripts
+    - **ESX** (Legacy)
+    - **QBCore**
+    - **Qbox**
+
+    Modern extensions from the ox ecosystem such as `oxmysql`, `ox_lib` and
+    `ox_inventory` are supported out of the box. For ESX, QBCore and Qbox,
+    LP-DevTool wires up the matching core automatically; with Standalone everything
+    runs without a framework.
+  </Accordion>
+
+  <Accordion title="How do I install a finished resource?" icon="server">
+    After clicking **Build**, you download your resource as a ZIP and install it
+    like any other FiveM resource:
+
+    <Steps>
+      <Step title="Extract the ZIP">
+        Extract the downloaded file. You'll get a folder with `fxmanifest.lua`
+        and, depending on the build, `client/`, `server/` and `html/`.
+      </Step>
+      <Step title="Copy into the resources folder">
+        Move the folder into the `resources` folder of your FiveM server. It's
+        easiest to keep the ZIP name as the folder name; that's your resource name.
+      </Step>
+      <Step title="Start it in server.cfg">
+        Add the resource with `ensure`:
+
+        ```cfg server.cfg
+        ensure my-script
+        ```
+      </Step>
+      <Step title="Restart the server">
+        Restart your server so the resource gets loaded.
+      </Step>
+    </Steps>
+
+    <Warning>
+      If your resource uses a framework, that framework (e.g. `es_extended`,
+      `qb-core` or `qbx_core`) must be started **before** your resource in
+      `server.cfg`.
+    </Warning>
+
+    For a detailed walkthrough including the folder structure, see
+    [Export & Installation](/en/export-installation).
+  </Accordion>
+
+  <Accordion title="Does LP-DevTool cost anything?" icon="euro-sign">
+    During the **beta, LP-DevTool is free**. Every builder and feature across all
+    tiers is unlocked for every account, you don't need an upgrade and don't have
+    to pay anything.
+
+    Later there will be three tiers (**Basis**, **Creator** and **Pro**). In the
+    app you can already see an overview of the future plans under **Upgrade**;
+    during the beta each plan is marked "included in the beta".
+
+    <Note>
+      For more details on the tiers and the beta, see
+      [Membership & Beta](/en/mitgliedschaft-beta).
+    </Note>
+  </Accordion>
+
+  <Accordion title="Where do I get help?" icon="discord">
+    The fastest way is our **Discord**. That's where everything around the beta
+    happens, you get support, updates, and can share feedback.
+
+    <Card title="LP-Scripts Discord" icon="discord" href="https://discord.com/invite/W7uzcDCKnJ">
+      Join the community and ask your question.
+    </Card>
+
+    You can also reach this documentation at any time via **Help and Docs** in the
+    app's account menu.
+  </Accordion>
+</AccordionGroup>
+
+## More questions
+
+<AccordionGroup>
+  <Accordion title="How do I sign in?" icon="discord">
+    Signing in works entirely through Discord. You click **Sign in with Discord**,
+    confirm the access, and land directly in your dashboard afterwards. There's no
+    separate password to remember. Learn more under
+    [Getting Started](/en/erste-schritte).
+  </Accordion>
+
+  <Accordion title="Can I reuse existing scripts?" icon="file-import">
+    Yes. The built-in Lua parser analyzes existing scripts and converts them into
+    visual blocks. That lets you keep editing existing code in the builder, extend
+    it, and export it again as a resource.
+  </Accordion>
+
+  <Accordion title="Can I use LP-DevTool in production on a live server?" icon="triangle-exclamation">
+    Because the platform is in beta, it's meant for trying things out, building and
+    giving feedback, and is currently not intended for production use on a live
+    server.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Script Builder" icon="cubes" href="/en/script-builder">
+    Dive into the core of LP-DevTool and build your first script.
+  </Card>
+  <Card title="Export & Installation" icon="box" href="/en/export-installation">
+    Learn how to build, download and install resources.
+  </Card>
+</CardGroup>

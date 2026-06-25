@@ -1,0 +1,138 @@
+﻿---
+title: "Export & Installation"
+description: "Build your finished resource, download it as a ZIP and install it on your FiveM server."
+---
+
+Once you're done in the builder, LP-DevTool turns your blocks into a
+ready-to-run FiveM resource. You get a ZIP file with the complete folder
+structure: all that's left is to extract it onto your server and start it.
+
+## Build & Download
+
+<Steps>
+  <Step title="Click Build">
+    In the builder, click **Build**. LP-DevTool compiles your blocks into clean
+    Lua code and assembles the full resource: including `fxmanifest.lua`, the
+    client script, and (if used) the server script.
+  </Step>
+  <Step title="Click Download">
+    Then download the result as a ZIP with **Download**. The file is named after
+    your resource, for example `my-script.zip`.
+  </Step>
+</Steps>
+
+<Note>
+  The filename is cleaned up automatically: uppercase becomes lowercase, spaces
+  and special characters become hyphens. So "My Script!" turns into
+  `my-script`. That same name becomes your resource name on the server later.
+</Note>
+
+## What's inside the ZIP
+
+The ZIP contains a finished resource with a clear structure. `fxmanifest.lua`
+always lives in the main folder, the rest is split by purpose:
+
+```text
+my-script/
+├─ fxmanifest.lua      # manifest: read first by FiveM
+├─ client/
+│  └─ client.lua       # runs on the player's client
+├─ server/
+│  └─ server.lua       # runs on the server (only when server logic is used)
+└─ html/               # frontend (e.g. with the HUD builder)
+   ├─ index.html
+   ├─ style.css
+   └─ script.js
+```
+
+<Note>
+  Only the files you actually need are generated. If you didn't build any server
+  logic, there is no `server/` folder: and no `server_script` entry is added to
+  `fxmanifest.lua`. The `html/` folder appears with UI-based builders (such as
+  the HUD builder), which also register a `ui_page` in the manifest.
+</Note>
+
+The `fxmanifest.lua` is set to `fx_version 'cerulean'` and `game 'gta5'` and
+wires up the correct scripts automatically:
+
+```lua fxmanifest.lua
+fx_version 'cerulean'
+game 'gta5'
+
+author 'LP-DevTool'
+description 'Erstellt mit dem LP-DevTool FiveM Baukasten'
+version '1.0.0'
+
+client_script 'client/client.lua'
+server_script 'server/server.lua'
+```
+
+<Tip>
+  If you picked a framework in the builder (ESX, QBCore or Qbox), LP-DevTool
+  wires up the matching core for you: for example
+  `exports['es_extended']:getSharedObject()` for ESX. With **Standalone**
+  everything runs without a framework. You don't need to add any of this by hand.
+</Tip>
+
+## The LP-DevTool credits header
+
+Every generated file starts with a short credits header. It doesn't affect the
+code and simply shows what the resource was built with:
+
+```lua
+-- LP-DevTool
+-- Powered by LP-Scripts · https://lp-scripts.at
+-- Erstellt mit dem LP-DevTool Builder.
+```
+
+The header adapts to the file type: a `--` comment in `.lua`, a `/* … */` block
+in `.css`/`.js`, and an `<!-- … -->` comment in `.html` (placed right after the
+`<!DOCTYPE>`). That way every file stays valid and runnable.
+
+## Installing on your FiveM server
+
+<Steps>
+  <Step title="Extract the ZIP">
+    Extract the downloaded ZIP. You'll get a folder with your resource
+    (`fxmanifest.lua`, `client/`, optionally `server/` and `html/`).
+  </Step>
+  <Step title="Copy into the resources folder">
+    Move that folder into the `resources` folder of your FiveM server. Make sure
+    the folder name is your desired resource name: the easiest option is to keep
+    it the same as the ZIP name.
+
+    ```text
+    server-data/
+    └─ resources/
+       └─ my-script/
+          └─ fxmanifest.lua
+    ```
+  </Step>
+  <Step title="Start it in server.cfg">
+    Add the resource to your `server.cfg` and start it with `ensure`:
+
+    ```cfg server.cfg
+    ensure my-script
+    ```
+
+    `ensure` starts the resource and makes sure it reloads cleanly if it's
+    already running.
+  </Step>
+  <Step title="Restart the server">
+    Restart your server (or reload at runtime with `refresh` and
+    `ensure my-script`) so the changes take effect.
+  </Step>
+</Steps>
+
+<Warning>
+  If your resource uses a framework, that framework (e.g. `es_extended`,
+  `qb-core` or `qbx_core`) must be started **before** your resource in
+  `server.cfg`. Otherwise your script can't find the core on startup.
+</Warning>
+
+## Next steps
+
+<Card title="Frameworks in detail" icon="layers" href="/en/frameworks">
+  Which code is generated for Standalone, ESX, QBCore and Qbox, and what to keep
+  in mind per framework.
+</Card>

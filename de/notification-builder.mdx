@@ -1,0 +1,197 @@
+﻿---
+title: "Notification Builder"
+description: "Gestalte eigene FiveM-Benachrichtigungen mit Varianten, Position, Animation, Farben, Icons und Dauer: und exportiere sie als fertige Resource."
+---
+
+Mit dem **Notification Builder** entwirfst du dein eigenes Benachrichtigungs-Design für deinen FiveM-Server. Du legst Aussehen, Position, Farben, Icons, Animation und Anzeigedauer fest, siehst das Ergebnis live in einer Vorschau und exportierst am Ende eine fertige Resource als ZIP-Datei. Die erzeugte Resource klinkt sich in ESX (`es_extended`) ein und ersetzt dessen Standard-Benachrichtigungen automatisch durch dein Design.
+
+<Note>
+Das Feld **Beschreibung** im Builder dient nur der Vorschau. Der eigentliche Text einer Benachrichtigung kommt zur Laufzeit aus dem auslösenden Script (z. B. „$15.000 erhalten"). Im Builder gestaltest du also das Aussehen, nicht die konkreten Meldungstexte.
+</Note>
+
+## Die drei Varianten
+
+Eine Benachrichtigung hat drei Varianten, die du jeweils komplett eigenständig gestalten kannst. Über die Tabs oberhalb der Vorschau wechselst du zwischen ihnen:
+
+- **Information**: neutrale Hinweise
+- **Erfolg**: erfolgreich abgeschlossene Aktionen
+- **Fehler**: fehlgeschlagene Aktionen oder Warnungen
+
+<Note>
+Ruft ein Script eine Benachrichtigung vom Typ `warning`, `danger` oder `inform` auf, wird diese automatisch zugeordnet: `inform` nutzt die **Information**-Variante, `warning` und `danger` nutzen die **Fehler**-Variante. Unbekannte Typen fallen auf **Information** zurück. Du gestaltest also drei Varianten und deckst damit alle eingehenden Typen ab.
+</Note>
+
+## Aufbau der Oberfläche
+
+<CardGroup cols={3}>
+  <Card title="Kopfzeile">
+    Projektname, Position, Vorlagen-Auswahl sowie die Buttons „Zurücksetzen" und „Build & Download".
+  </Card>
+  <Card title="Live-Vorschau">
+    Zeigt die aktuell ausgewählte Variante in Echtzeit. Mit „Test abspielen" spielst du die Eingangsanimation erneut ab.
+  </Card>
+  <Card title="Einstellungs-Panel">
+    Rechts, nach Themen gruppiert: Inhalt, Layout, Hintergrund, Rahmen, Akzent, Icon, Typografie, Animation und Transform.
+  </Card>
+</CardGroup>
+
+## Schritt für Schritt
+
+<Steps>
+  <Step title="Projektnamen vergeben">
+    Trage oben links einen Namen ein. Er wird später als Dateiname der exportierten ZIP verwendet.
+  </Step>
+  <Step title="Optional eine Vorlage laden">
+    Wähle im Dropdown **Vorlage** eines der mitgelieferten Designs als Startpunkt. Alle Einstellungen werden anschließend übernommen und sind frei anpassbar.
+  </Step>
+  <Step title="Position festlegen">
+    Bestimme über **Position**, wo die Benachrichtigungen auf dem Bildschirm erscheinen.
+  </Step>
+  <Step title="Variante wählen und gestalten">
+    Wechsle über die Tabs zwischen **Information**, **Erfolg** und **Fehler** und passe für jede Variante Inhalt, Farben, Animation usw. an.
+  </Step>
+  <Step title="Vorschau testen">
+    Klicke auf **Test abspielen**, um die Eingangsanimation der aktiven Variante zu prüfen.
+  </Step>
+  <Step title="Exportieren">
+    Klicke auf **Build & Download**, um die fertige Resource als ZIP herunterzuladen.
+  </Step>
+</Steps>
+
+## Position
+
+Die Position gilt global für alle Varianten. Es stehen sechs Andockpunkte zur Verfügung:
+
+- Oben links, Oben mittig, Oben rechts
+- Unten links, Unten mittig, Unten rechts
+
+<Note>
+Bei den unteren Positionen werden gleichzeitig erscheinende Benachrichtigungen von unten nach oben gestapelt, sodass die neueste immer am Bildschirmrand sitzt.
+</Note>
+
+## Einstellungen im Detail
+
+Die **Breite** (250-480 px) und die **Position** gelten für die gesamte Benachrichtigung. Alle übrigen Einstellungen lassen sich pro Variante getrennt festlegen.
+
+### Inhalt
+
+- **Titel**: die Überschrift (1-48 Zeichen). Sie wird in der fertigen Benachrichtigung in Großbuchstaben dargestellt.
+- **Beschreibung (Vorschau)**: nur für die Vorschau im Builder (bis 160 Zeichen). Der echte Text kommt zur Laufzeit aus dem Script.
+- **Icon**: Auswahl aus neun Symbolen: Info, Haken, Kreuz, Warnung, Schild, Glocke, Verbot, Blitz und Stern.
+
+### Layout
+
+- **Breite**: 250-480 px (global)
+- **Höhe**: 50-150 px
+- **Anzeigedauer**: 1000-12000 ms (in 500-ms-Schritten); steuert auch die ablaufende Fortschrittsleiste am unteren Rand.
+
+### Hintergrund
+
+- **Typ**: **Einfarbig** oder **Verlauf**.
+- Bei Einfarbig: eine **Farbe**.
+- Bei Verlauf: **Verlauf Start**, **Verlauf Ende** und **Verlaufswinkel** (0-360°).
+- **Deckkraft**: 0-100 %.
+
+### Rahmen & Schatten
+
+- **Eckenradius**: 0-32 px
+- **Rahmenstärke**: 0-6 px
+- **Rahmenfarbe**
+- **Schatten-Glow**: 0-40 px
+- **Schattenfarbe**
+
+### Akzentleiste
+
+- **Akzent anzeigen**: farbige Leiste an der Seite der Benachrichtigung ein-/ausschalten.
+- **Akzentfarbe**
+- **Akzentbreite**: 2-12 px
+
+### Icon-Stil
+
+- **Icon-Hintergrund**: Hintergrundfarbe der Icon-Kachel.
+- **Icon-Symbolfarbe**: Farbe des Symbols selbst.
+
+### Typografie
+
+- **Titelgröße**: 10-24 px
+- **Titelfarbe**
+- **Textgröße**: 9-18 px
+- **Textfarbe**
+
+### Animation
+
+- **Eingang**: Eingangsanimation: Slide (rechts), Slide (links), Slide (oben), Slide (unten), Einblenden oder Zoom.
+- **Dauer**: 100-2000 ms.
+- **Beschleunigung**: Ease (Standard), Linear, Ease-In, Ease-Out, Ease-In-Out oder Benutzerdefiniert.
+
+<Note>
+Bei der Beschleunigung **Benutzerdefiniert** erscheinen vier zusätzliche Bezier-Regler (X1, Y1, X2, Y2) für eine vollständig eigene Beschleunigungskurve. X1/X2 reichen von 0-1, Y1/Y2 von -0.5-1.5.
+</Note>
+
+### Transform
+
+Feine räumliche Anpassungen des Benachrichtigungs-Containers:
+
+- **Skalierung**: 0.5-1.5
+- **Versatz X** / **Versatz Y**: jeweils -100-100 px
+- **Rotation**: -180-180°
+- **Neigung X** / **Neigung Y**: jeweils -45-45°
+
+## Vorlagen
+
+Über das Dropdown **Vorlage** lädst du ein fertiges Design als Ausgangspunkt. Danach lassen sich alle Werte frei anpassen.
+
+<CardGroup cols={2}>
+  <Card title="Cyberpunk">
+    Kantiges Neon-Design mit Pink/Cyan, harten Ecken und leichter Neigung.
+  </Card>
+  <Card title="Frosted Glass">
+    Heller, transparenter Milchglas-Look mit Zoom-Animation.
+  </Card>
+  <Card title="Emerald Glass">
+    Dunkle Farbverläufe mit smaragdgrünen Akzenten.
+  </Card>
+  <Card title="Obsidian Gold">
+    Tiefschwarzer Hintergrund mit goldenen Akzenten.
+  </Card>
+  <Card title="Crimson Tactical">
+    Taktischer, militärischer Stil mit kräftiger Akzentleiste.
+  </Card>
+  <Card title="Minimal Paper">
+    Schlichtes, reduziertes Design mit dezenter Einblende-Animation.
+  </Card>
+</CardGroup>
+
+## Vorschau & Test
+
+Die Live-Vorschau zeigt immer die aktuell ausgewählte Variante. Über die Tabs wechselst du die Variante, mit **Test abspielen** spielst du die Eingangsanimation samt ablaufender Fortschrittsleiste erneut ab. So prüfst du Animation, Dauer und Position, bevor du exportierst.
+
+## Build & Download
+
+Mit **Build & Download** erzeugst du die fertige FiveM-Resource und lädst sie als ZIP herunter (benannt nach deinem Projektnamen). Das Archiv enthält alle nötigen Dateien: `fxmanifest.lua`, das Client-Script und die NUI-Dateien (HTML, CSS, JavaScript) mit deinem Design.
+
+<Steps>
+  <Step title="ZIP entpacken">
+    Entpacke die heruntergeladene Datei in den `resources`-Ordner deines Servers.
+  </Step>
+  <Step title="Resource starten">
+    Trage die Resource in deine `server.cfg` ein (z. B. `ensure dein_resource_name`).
+  </Step>
+  <Step title="Server neu starten">
+    Starte den Server neu oder lade die Resource. Dein Design ist nun aktiv.
+  </Step>
+</Steps>
+
+## Im Spiel verwenden
+
+Die erzeugte Resource klinkt sich automatisch in ESX (`es_extended`) ein: Bestehende ESX-Benachrichtigungen (`ESX.ShowNotification`, das Event `ESX:Notify` sowie `esx:showNotification` / `esx:showAdvancedNotification`) werden ohne weitere Anpassung in deinem Design dargestellt. Du musst deine vorhandenen Scripts also nicht umschreiben.
+
+Zum schnellen Prüfen im Spiel steht der Befehl `/lpnotify_test` zur Verfügung, der eine Test-Benachrichtigung vom Typ Information auslöst.
+
+<Note>
+Die Resource setzt **es_extended** auf dem Server voraus.
+</Note>
+
+## Zurücksetzen
+
+Mit **Zurücksetzen** stellst du jederzeit die Standard-Konfiguration des Builders wieder her und beginnst von vorne.

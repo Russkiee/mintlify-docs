@@ -1,0 +1,89 @@
+﻿---
+title: "Was ist LP-DevTool?"
+description: "Ein visueller FiveM-Baukasten, mit dem du Scripts, HUDs, Notifications, NUI-Menüs und Loading Screens ohne Code-Kenntnisse baust und als fertige Resource exportierst."
+---
+
+LP-DevTool ist ein visueller FiveM-Baukasten als Web-App. Du baust eigene FiveM-Scripts, HUDs, Notifications, NUI-Menüs und Loading Screens per Drag and Build zusammen, konfigurierst alles direkt in den Bausteinen und exportierst das Ergebnis als startbare FiveM-Resource für deinen Server, ganz ohne Programmierkenntnisse.
+
+Statt Lua, HTML oder CSS von Hand zu schreiben, ziehst du fertige Blöcke wie Marker, Fahrzeugspawns, Datenbankabfragen oder Events in deinen Workspace und verknüpfst sie logisch. Im Hintergrund generiert das Tool daraus sauberen, optimierten Code, der den Best Practices der FiveM-Entwicklung folgt.
+
+<Note>
+  LP-DevTool befindet sich aktuell in der Beta. Während dieser Phase sind für alle Accounts sämtliche Builder und Funktionen freigeschaltet, unabhängig vom Paket. Du brauchst dafür kein Upgrade.
+</Note>
+
+## Was du bauen kannst
+
+LP-DevTool ist kein einzelnes Werkzeug, sondern eine Sammlung spezialisierter Builder. Jeder Builder ist auf FiveM optimiert und exportiert am Ende eine fertige Resource.
+
+<CardGroup cols={2}>
+  <Card title="Lua Script Builder" icon="cubes">
+    Der Kern von LP-DevTool. Baue komplette FiveM-Scripts per Drag and Drop für Standalone, ESX oder QBCore. Marker, Fahrzeuge, Datenbank und Events werden automatisch zu sauberem Lua-Code. Unterstützt Client-, Server- und Fullstack-Logik und exportiert eine startbare FiveM-Resource.
+  </Card>
+  <Card title="HUD Builder" icon="gauge">
+    Designe dein komplettes In-Game-HUD mit Elementen wie Tacho, Status, Bargeld, Bank, Job und ID. Frei positionierbar, farblich anpassbar, mit Live-Vorschau und ESX-Integration. Export als fertiges NUI-HUD-Script.
+  </Card>
+  <Card title="Notification Builder" icon="bell">
+    Ersetze das Standard-Notify durch dein eigenes Design. Style Info, Erfolg und Fehler separat, inklusive Farben, Icons und Animationen. Überschreibt `ESX.ShowNotification` und exportiert inklusive `fxmanifest` und NUI.
+  </Card>
+  <Card title="Easy NUI Builder" icon="window-restore">
+    Baue interaktive Menüs, Overlays und UI-Panels per Drag and Drop, ohne HTML oder CSS zu schreiben. Verknüpfe Elemente mit Lua-Logik, wechsle direkt in den Lua Builder und exportiere eine vollständige, lauffähige NUI-Resource.
+  </Card>
+  <Card title="Loading Screen Builder" icon="spinner">
+    Erstelle individuelle Ladebildschirme für deinen Server, mit Hintergrund, Musik, Animationen und Branding. Vollständig anpassbares Layout, Export als fertiger FiveM Loading Screen.
+  </Card>
+</CardGroup>
+
+## Unterstützte Frameworks
+
+Der Lua Builder spricht die gängigen FiveM-Frameworks fließend. Du wählst beim Bauen einfach dein Framework aus, und der generierte Code passt sich automatisch an.
+
+- **Standalone**: komplett frameworkfreie Scripts
+- **ESX** (Legacy)
+- **QBCore**
+- **Qbox**
+
+Auch moderne Erweiterungen aus dem ox-Ökosystem wie `oxmysql`, `ox_lib` und `ox_inventory` werden standardmäßig unterstützt.
+
+## So funktioniert es
+
+<Steps>
+  <Step title="Builder öffnen">
+    Melde dich an und wähle den passenden Builder, zum Beispiel den Lua Script Builder für ein komplettes Script oder den HUD Builder für dein In-Game-Interface.
+  </Step>
+  <Step title="Bausteine zusammenziehen">
+    Ziehe Funktionen wie Marker, Fahrzeugspawns, Events oder Datenbankabfragen in den Workspace und verknüpfe sie logisch. Die Parameter konfigurierst du direkt im jeweiligen Block.
+  </Step>
+  <Step title="Framework wählen">
+    Lege fest, ob dein Script für Standalone, ESX, QBCore oder Qbox gebaut werden soll. Der Code wird passend dazu generiert.
+  </Step>
+  <Step title="Als Resource exportieren">
+    Mit einem Klick erzeugt LP-DevTool daraus eine fertige FiveM-Resource. Du lädst sie herunter und legst sie in deinen Server-Ordner, importieren und starten.
+  </Step>
+</Steps>
+
+## Bestehende Scripts importieren
+
+Du hast bereits Lua-Code? Der integrierte Lua-Parser analysiert bestehende Scripts und wandelt sie in visuelle Bausteine um. So kannst du vorhandenen Code im Builder weiterbearbeiten, erweitern und anschließend wieder als Resource exportieren.
+
+## Während der Beta
+
+In der Beta-Phase sind alle Builder und Pakete (Basis, Creator und Pro) für jeden Tester vollständig freigeschaltet. Konkret bedeutet das:
+
+- Jeder Builder ist ohne Upgrade nutzbar.
+- Der Export als fertige FiveM-Resource ist für alle Accounts aktiv.
+- Du kannst alle Frameworks und Funktionen ohne Einschränkung testen.
+
+<Note>
+  Da sich die Plattform in der Beta befindet, ist sie zum Ausprobieren, Bauen und Feedback-Geben gedacht und nicht für den produktiven Einsatz auf einem Live-Server vorgesehen.
+</Note>
+
+## Nächste Schritte
+
+<CardGroup cols={2}>
+  <Card title="Lua Script Builder" icon="cubes" href="/de/lua-builder">
+    Steige in den Kern von LP-DevTool ein und baue dein erstes Script.
+  </Card>
+  <Card title="Export &amp; Import" icon="box" href="/de/export">
+    Erfahre, wie du Resources exportierst und bestehende Scripts importierst.
+  </Card>
+</CardGroup>

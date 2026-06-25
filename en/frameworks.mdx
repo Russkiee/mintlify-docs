@@ -1,0 +1,103 @@
+---
+title: "Supported frameworks"
+description: "Standalone, ESX, QBCore and Qbox at a glance: what sets them apart and how to pick the right framework in each builder."
+---
+
+LP-DevTool does not lock you into a single framework. In the builders whose code depends on a framework, you choose your target framework yourself, and the generated Lua code adapts automatically. You never have to rewrite anything: the same blocks, the same design, just a different framework choice produces the matching code for your server.
+
+Four frameworks are supported:
+
+<CardGroup cols={2}>
+  <Card title="Standalone" icon="cube">
+    Plain FiveM with no framework dependency. Uses native GTA and FiveM functions only.
+  </Card>
+  <Card title="ESX" icon="layer-group">
+    The widely used ESX framework (`es_extended`). Code is wired up through the shared ESX object.
+  </Card>
+  <Card title="QBCore / QB" icon="layer-group">
+    The QBCore framework (`qb-core`). Wired up through the QBCore core object.
+  </Card>
+  <Card title="Qbox" icon="layer-group">
+    The modern Qbox framework (`qbx_core`). Wired up directly through exports.
+  </Card>
+</CardGroup>
+
+<Note>
+  You do not have to commit to a framework up front. Pick it in the builder and change it again any time; the next build regenerates the code for the selected framework.
+</Note>
+
+## The difference between the frameworks
+
+Frameworks govern how player data (money, job, hunger, thirst) is queried and how functions such as notifications look. These are exactly the spots where the generated code differs.
+
+| Framework | Value | Dependency | Wiring in code |
+| --- | --- | --- | --- |
+| Standalone | `none` | none | native FiveM functions only |
+| ESX | `esx` | `es_extended` | `exports["es_extended"]:getSharedObject()` |
+| QBCore / QB | `qbcore` | `qb-core` | `exports["qb-core"]:GetCoreObject()` |
+| Qbox | `qbox` | `qbx_core` | `exports.qbx_core:...` |
+
+<Note>
+  QBCore and QB are the same framework. In LP-DevTool this option is labelled **QBCore / QB**.
+</Note>
+
+## What changes in the build
+
+The framework choice has concrete effects on the generated code. A few examples:
+
+### Notifications (Script Builder)
+
+The **Notification** block produces a different line depending on the framework:
+
+| Framework | Generated call |
+| --- | --- |
+| Standalone | native GTA display (`SetNotificationTextEntry` + `DrawNotification`) |
+| ESX | `ESX.ShowNotification(...)` |
+| QBCore / QB | `QBCore.Functions.Notify(...)` |
+| Qbox | `exports.qbx_core:Notify(...)` |
+
+### Initialization (Script Builder)
+
+For ESX and QBCore the matching init line is added automatically at the top of the Lua file (the shared ESX object or the QBCore core object). Standalone and Qbox need no such line: Standalone runs purely native, and Qbox is addressed directly through exports.
+
+### Live data (HUD Builder)
+
+For the HUD, the framework determines where the displayed values come from:
+
+- **ESX** reads cash and bank from the ESX accounts, the job from the ESX player data, and hunger and thirst via `esx_status`.
+- **QBCore / QB** and **Qbox** read money, job, and hunger and thirst from their respective player data (`GetPlayerData`).
+- **Standalone** has no framework data source and shows fixed sample values for money, job and status. Perfect for building and testing the HUD layout.
+
+### Manifest dependency (Easy NUI Builder)
+
+In the Easy NUI Builder, LP-DevTool writes the matching `dependency` into the `fxmanifest.lua` based on the framework (`es_extended`, `qb-core` or `qbx_core`). For Standalone no dependency is added.
+
+## Choosing a framework in the builder
+
+The framework selector lives in the builders whose code depends on the framework: the **Script Builder**, the **HUD Builder** and the **Easy NUI Builder**. Each of these builders offers all four frameworks.
+
+<Steps>
+  <Step title="Script Builder">
+    In the header at the top, next to the name, use the framework bar to switch between **Standalone**, **ESX**, **QBCore / QB** and **Qbox**. The choice applies to the whole script and is stored with it.
+  </Step>
+  <Step title="HUD Builder">
+    In the settings at the top, pick the **Framework** from the select field. This determines where the HUD pulls its live values for money, job and status from.
+  </Step>
+  <Step title="Easy NUI Builder">
+    Also via the **Framework** select field in the settings. The choice controls which dependency is written into the NUI resource's `fxmanifest.lua`.
+  </Step>
+</Steps>
+
+<Note>
+  In the Script Builder the selected framework is saved together with your script. When you reopen a saved script later, your framework choice is already set.
+</Note>
+
+## Which framework should I pick?
+
+- Pick **the framework that runs on your FiveM server.** Running ESX? Pick ESX. Running QBCore? Pick QBCore / QB. Running Qbox? Pick Qbox.
+- Pick **Standalone** if your server runs without a framework or the resource needs no framework features. Standalone resources run anywhere, but they do not use any player data from a framework.
+- When in doubt, go by which core resource (`es_extended`, `qb-core` or `qbx_core`) is already started on your server.
+
+<Note>
+  For a resource to work correctly with ESX, QBCore or Qbox, the matching core resource must be present and started on your server. Standalone resources have no such requirement.
+</Note>

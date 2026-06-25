@@ -1,0 +1,176 @@
+﻿---
+title: "HUD Builder"
+description: "Build a realistic in-game HUD with status values, money, job, speedometer and logo: the preview matches the export exactly."
+---
+
+The HUD Builder is a visual editor for assembling a complete in-game HUD for your FiveM server.
+You pick a style and elements, position everything via drag-and-drop, and download a ready-to-use
+resource at the end. What you see in the preview is exactly what shows up in-game (WYSIWYG).
+
+## Choose a framework
+
+At the top of the builder you set the **project name** and the **framework**. The framework
+determines which data source your HUD is bound to:
+
+- **ESX**
+- **QBCore / QB**
+- **Qbox**
+- **Standalone** (no framework)
+
+<Note>
+The project name is also used as the filename of the exported resource.
+</Note>
+
+## Editor layout
+
+The builder is split into three columns:
+
+- **Left: Elements:** A list of all HUD elements. Each one can be toggled on or off and selected
+  for editing by clicking it.
+- **Center: Preview:** A scaled 1920×1080 stage with demo values. This is where you drag
+  elements into position.
+- **Right: Settings:** Global options (General) plus the detailed settings for the currently
+  selected element.
+
+## Elements
+
+The following elements are available and can be enabled individually:
+
+- **Logo**: your server's text or image
+- **Cash**: cash on hand
+- **Bank**: account balance
+- **Player ID**: the player's ID
+- **Job**: current occupation
+- **Status values**: health, armor, hunger, thirst, stamina, voice
+- **Speedometer**: speed display while in a vehicle
+- **Clock**: current time
+- **Location**: current position
+
+<Note>
+**Clock** and **Location** are hidden by default. Enable them via the toggle in the element list
+if you want to use them.
+</Note>
+
+## Step by step to your own HUD
+
+<Steps>
+<Step title="Start from a template">
+On the right, under **General → Templates**, you'll find ready-made looks:
+**Glass Modern**, **Cyberpunk Neon**, **Minimal Clean**, **Tactical**, **Neon Holo** and
+**Royal Gold**. One click sets a matching combination of preset, font, accent color, styles and
+layout: a perfect starting point you can freely customize afterwards.
+</Step>
+
+<Step title="Set the style">
+Under **Style preset** you choose the base design (e.g. Glass, Cyberpunk, Classic RPG, Tactical).
+Also set the **font**, **accent color**, **corner radius** and **accent glow**. The accent color
+tints icons, the speedometer arc and the logo text, among other things.
+</Step>
+
+<Step title="Toggle elements on and off">
+In the left list, enable exactly the elements your HUD should show and hide the rest.
+</Step>
+
+<Step title="Position elements">
+Click an element in the preview and drag it where you want it. The active element is marked with a
+dashed outline in your accent color. For fine adjustments use **Anchor**, **Offset X**,
+**Offset Y** and **Size** on the right.
+</Step>
+
+<Step title="Configure per-element details">
+Depending on the selected element, additional options appear: e.g. logo text/image, speedometer
+style, or status style and status colors (see below).
+</Step>
+
+<Step title="Build & Download">
+Click **Build &amp; Download** in the top right. You'll receive a ZIP file containing the finished
+HUD resource.
+</Step>
+</Steps>
+
+## Layout: grouped vs. separate
+
+The **value layout** controls how the info elements **Cash, Bank, Player ID, Job, Clock** and
+**Location** are arranged:
+
+- **One box**: All active values sit inside a single shared info box. You move and scale this box
+  as a whole; the position and size of the individual values are then controlled together.
+- **Separate**: Each value is its own widget that you can position freely and scale individually.
+
+<Note>
+**Logo**, **Status values** and **Speedometer** are always positioned independently: the value
+layout only affects the six info values above.
+</Note>
+
+## Styling the status values
+
+Select the **Status values** element to configure these readouts: **health, armor, hunger, thirst,
+stamina** and **voice**. You can toggle each value individually and give it its own **color**.
+
+The **Status style** sets how all status values are displayed:
+
+- **Rings**: circular progress rings with the icon in the center
+- **Bars**: horizontal bars
+- **Segments**: horizontal bars split into segments
+- **Pills**: narrow vertical columns
+
+<Note>
+The **voice** icon pulses while speaking, so active talking is immediately visible.
+</Note>
+
+## Speedometer
+
+Select the **Speedometer** element and set the **speedometer style**:
+
+- **Dial**: classic round gauge with an RPM arc
+- **Digital**: a large number without a dial
+- **Bar**: a number with a horizontal RPM strip
+
+The **speed unit** (km/h or mph) is set globally under **General**.
+
+<Note>
+In-game the speedometer only appears while the player is in a vehicle. In the preview it is shown
+continuously with demo values so you can style it.
+</Note>
+
+## Logo
+
+For the **Logo** element you have two options:
+
+- **Logo text**: a wordmark rendered in your accent color
+- **Logo image URL** (optional): a link to an image shown instead of the text
+
+## Colors, radius and glow
+
+Under **General**, three settings shape the overall impression:
+
+- **Accent color**: the consistent main color (icons, speedometer, logo, selection outline)
+- **Radius**: corner radius of the boxes (0-40 px)
+- **Accent glow**: a colored glow around the boxes (0-60 px), in your accent color
+
+You enter the accent color via the color picker or as a hex value. Status colors are set
+separately per status value.
+
+## Fine positioning
+
+For the selected element (or the info box) these sliders are available on the right:
+
+- **Anchor**: the corner the element is aligned to (top/bottom, left/right)
+- **Offset X**: horizontal distance from the corner (0-1920 px)
+- **Offset Y**: vertical distance from the corner (0-1080 px)
+- **Size**: scaling from 50% to 250%
+
+The anchor determines from which screen corner Offset X and Y are measured: this keeps your HUD
+cleanly positioned across different resolutions.
+
+## Preview = export
+
+The preview renders your HUD with the very same styles that are written into the exported
+resource. Demo values (e.g. cash, balance, speed) are for display only; in-game they are replaced
+by the real values from your framework. As a result, what you see in the editor matches the final
+in-game result exactly.
+
+<Card title="Export the result" icon="download">
+**Build &amp; Download** generates a ZIP file with the ready-to-use HUD resource for your chosen
+framework.
+</Card>

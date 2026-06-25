@@ -1,0 +1,156 @@
+﻿---
+title: "Script Builder"
+description: "Build working FiveM Lua scripts visually from blocks and export them as a ready-to-use resource."
+---
+
+The Script Builder is the heart of LP-DevTool. You assemble your script from ready-made building blocks, configure each block through simple fields, and let the tool generate clean Lua plus an `fxmanifest.lua` from it. No Lua knowledge required.
+
+## Layout of the interface
+
+The builder is split into three columns:
+
+<CardGroup cols={3}>
+  <Card title="Blocks" icon="shapes">
+    The left column holds the catalog of every available block, grouped by category. A click adds the block.
+  </Card>
+  <Card title="Flow" icon="list-ordered">
+    The middle column shows the order of your blocks. This is where you sort, select and delete them.
+  </Card>
+  <Card title="Configuration" icon="sliders">
+    The right column shows the settings of the currently selected block.
+  </Card>
+</CardGroup>
+
+At the top you find the header with **Name**, **Framework** and the actions **Save** and **Build & Download**. Below it you pick the scope using tabs.
+
+## Step by step
+
+<Steps>
+  <Step title="Give it a name">
+    Enter a name for your script in the top left (1 to 60 characters). It is also used for the downloaded file later.
+  </Step>
+  <Step title="Choose a framework">
+    Pick which framework the script is built for: **Standalone**, **ESX**, **QBCore / QB** or **Qbox**. The choice affects, for example, how notifications are produced, and adds the matching initialization at the start of the Lua file when needed.
+  </Step>
+  <Step title="Select a scope">
+    The tabs determine which area the next blocks go into: **Client · once**, **Client · loop** or **Server**. Each scope has its own list of blocks.
+  </Step>
+  <Step title="Add blocks">
+    Click a block in the left column. It appears in the **Flow** and is selected automatically.
+  </Step>
+  <Step title="Configure the block">
+    Select a block in the flow and fill in its fields on the right under **Configuration** (for example text, coordinates or a vehicle model).
+  </Step>
+  <Step title="Reorder">
+    Use the **up** and **down** arrows to sort blocks. The **trash** icon removes a block.
+  </Step>
+  <Step title="Save and build">
+    Save your script with **Save** and generate the finished resource via **Build & Download**.
+  </Step>
+</Steps>
+
+## Scopes
+
+Every block belongs to one of the three scopes. They determine where and how the generated code runs.
+
+| Scope | Tab label | Behavior |
+| --- | --- | --- |
+| `single` | Client · once | Runs once when the resource starts (inside a `CreateThread`). Ideal for setup tasks such as blips or a one-time teleport. |
+| `thread` | Client · loop | Runs continuously in an endless loop (`while true`) with a short pause at the end of each iteration. For things that need to be checked over and over. |
+| `server` | Server | Runs on the server side. This is where actions that affect all players belong. |
+
+<Note>
+  The three scopes are independent of each other. When you switch tabs, you edit a different block list each time. During the build the client scopes are merged into `client/client.lua` and the server scope into `server/server.lua`.
+</Note>
+
+## Available blocks
+
+The blocks are sorted into categories in the catalog.
+
+### UI
+
+- **Notification**: Shows a notification. Field: *Message*. The output depends on the selected framework.
+
+### Debug
+
+- **Console output**: Writes text to the console (`print`). Field: *Text*.
+
+### Control
+
+- **Wait**: Pauses execution. Field: *Milliseconds*.
+
+### World
+
+- **Set waypoint**: Sets a waypoint on the map. Fields: *X*, *Y*.
+- **Teleport**: Moves the player to a position. Fields: *X*, *Y*, *Z*.
+- **Create blip**: Creates a map blip. Fields: *X*, *Y*, *Z*, *Sprite*, *Color*, *Label*.
+
+### Vehicles
+
+- **Spawn vehicle**: Spawns a vehicle and puts the player inside it. Fields: *Model*, *X*, *Y*, *Z*, *Heading*.
+
+### Player
+
+- **Give weapon**: Gives the player a weapon. Fields: *Weapon hash*, *Ammo*.
+- **Set health**: Sets the player's health. Field: *Health (100-200)*.
+- **Set armor**: Sets the player's armor. Field: *Armor (0-100)*.
+- **Freeze player**: Freezes the player or releases the freeze. Field: *Frozen (1/0)*.
+
+### Events
+
+- **Trigger server event**: Triggers a server event. Field: *Event name*.
+- **Trigger client event (server)**: Triggers a client event from the server. Fields: *Event name*, *Target ID (-1 = all)*. This block belongs in the server scope.
+
+<Note>
+  For number fields (such as coordinates or ammo) an empty field is treated as `0`. Text fields are embedded into Lua safely during the build.
+</Note>
+
+## Choosing a framework
+
+The chosen framework adapts the generated code:
+
+| Framework | Effect |
+| --- | --- |
+| **Standalone** | Plain FiveM with no dependencies. Notifications use the native GTA display. |
+| **ESX** | Adds the ESX initialization at the start. Notifications via `ESX.ShowNotification`. |
+| **QBCore / QB** | Adds the QBCore initialization. Notifications via `QBCore.Functions.Notify`. |
+| **Qbox** | Notifications via `exports.qbx_core:Notify`. |
+
+## Saving
+
+Use **Save** to store your script in your account. The first save creates the script; after that, further clicks update the same script. Saved scripts can be opened and edited again later, including all three scopes, the name and the framework.
+
+<Note>
+  Saving and building are separate. Saving preserves your editing state; building produces the finished resource for download.
+</Note>
+
+## Build & Download
+
+**Build & Download** turns your blocks into a complete FiveM resource and downloads it as a ZIP file. The file name matches your script name.
+
+The ZIP file contains:
+
+- `fxmanifest.lua`: the resource manifest (including `fx_version`, `game` and the script entries).
+- `client/client.lua`: the merged code of the client scopes (*once* and *loop*).
+- `server/server.lua`: only present if you added blocks in the server scope.
+
+How to use the finished resource:
+
+<Steps>
+  <Step title="Unzip">
+    Extract the downloaded ZIP file.
+  </Step>
+  <Step title="Place it in the resources folder">
+    Copy the extracted folder into your FiveM server's `resources` folder.
+  </Step>
+  <Step title="Start the resource">
+    Add the resource to your `server.cfg` with `ensure <name>` and restart the server (or start the resource live).
+  </Step>
+</Steps>
+
+## Good to know
+
+- The script name must be between 1 and 60 characters long.
+- You can add a large number of blocks per scope: for typical scripts there is effectively no limit.
+- All inputs are validated server-side during the build, and text is embedded into the Lua code safely. If the build fails, an error message with a hint appears.
+- The order of blocks in the **Flow** matches exactly the execution order in the generated code.
